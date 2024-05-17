@@ -1,0 +1,64 @@
+.newsletter .grid {
+    align-items: center
+}
+
+.newsletter-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative
+}
+
+@media screen and (min-width: 750px) {
+    .newsletter-form {
+        align-items: flex-start;
+        margin: 0 auto
+    }
+}
+
+.newsletter-form__field-wrapper {
+    width: 100%
+}
+
+.newsletter-form__field-wrapper .field__input {
+    padding-right: 5rem;
+    box-shadow: none;
+    background: #fff;
+    margin-right: -20px;
+    border-radius: 10px
+}
+
+.newsletter-form__message {
+    justify-content: center;
+    margin-bottom: 0
+}
+
+.newsletter-form__message--success {
+    margin-top: 2rem
+}
+
+.newsletter {
+    width: 1200px;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto
+}
+
+@media screen and (min-width: 750px) {
+    .newsletter-form__message {
+        justify-content: flex-start
+    }
+}
+
+.newsletter-form__button {
+    width: 4.4rem;
+    margin: 0
+}
+
+.newsletter-form__button .icon {
+    width: 1.5rem
+}
+
+/*# sourceMappingURL=/cdn/shop/t/1/assets/component-newsletter.css.map?v=104428928238840112351653499758 */

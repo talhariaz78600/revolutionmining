@@ -1,33 +1,114 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --font-body-family: Montserrat, sans-serif;
+  --font-body-style: normal;
+  --font-body-weight: 400;
+
+  --font-heading-family: Montserrat, sans-serif;
+  --font-heading-style: normal;
+  --font-heading-weight: 600;
+
+  --font-body-scale: 1.0;
+  --font-heading-scale: 1.2;
+
+  --color-base-text: 237, 237, 237;
+  --color-base-background-1: 7, 7, 19;
+  --color-base-background-2: 216, 47, 150;
+  --color-base-solid-button-labels: 255, 255, 255;
+  --color-base-outline-button-labels: 255, 255, 255;
+  --color-base-accent-1: 141, 165, 251;
+  --color-base-accent-2: 51, 79, 180;
+  --payment-terms-background-color: #070713;
+
+  --gradient-base-background-1: #070713;
+  --gradient-base-background-2: linear-gradient(129deg, rgba(251, 51, 166, 1) 2%, rgba(69, 46, 226, 1) 10%, rgba(127, 72, 176, 1) 17%, rgba(51, 79, 180, 1) 76%);
+  --gradient-base-accent-1: linear-gradient(275deg, rgba(143, 166, 250, 1) 3%, rgba(51, 79, 180, 1) 15%, rgba(27, 36, 91, 1) 48%, rgba(220, 82, 137, 1) 95%, rgba(251, 51, 166, 1) 100%);
+  --gradient-base-accent-2: linear-gradient(0deg, rgba(29, 36, 96, 1) 1%, rgba(7, 7, 19, 1) 33%);
+
+  --page-width: 120rem;
+  --page-width-margin: 0rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: calc(var(--font-body-scale) * 62.5%);
+  height: 100%;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  grid-template-columns: 100%;
+  min-height: 100%;
+  margin: 0;
+  font-size: 1.5rem;
+  letter-spacing: 0.06rem;
+  line-height: calc(1 + 0.8 / var(--font-body-scale));
+  font-family: var(--font-body-family);
+  font-style: var(--font-body-style);
+  font-weight: var(--font-body-weight);
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@media screen and (min-width: 750px) {
+  body {
+      font-size: 1.6rem;
+  }
+}
+
+header-drawer {
+  justify-self: flex-end;
+  margin-left: -1.2rem;
+}
+
+@media screen and (min-width: 990px) {
+  header-drawer {
+      display: none;
+  }
+}
+
+.menu-drawer-container {
+  display: flex;
+}
+
+.list-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list-menu--inline {
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+summary.list-menu__item {
+  padding-right: 2.7rem;
+}
+
+.list-menu__item {
+  display: flex;
+  align-items: center;
+  line-height: calc(1 + 0.3 / var(--font-body-scale));
+}
+
+.list-menu__item--link {
+  text-decoration: none;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  line-height: calc(1 + 0.8 / var(--font-body-scale));
+}
+
+@media screen and (min-width: 750px) {
+  .list-menu__item--link {
+      padding-bottom: 0.5rem;
+      padding-top: 0.5rem;
   }
 }
