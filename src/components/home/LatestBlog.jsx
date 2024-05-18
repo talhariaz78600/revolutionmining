@@ -4,7 +4,7 @@ import "../../assets/css/section-featured-blog.css"
 const LatestBlog = () => {
     return (
         <div>
-            <section id="shopify-section-template--14480007561261__1644260525107253b5" className="shopify-section spaced-section spaced-section--full-width"><link rel="stylesheet" href="//www.revolutionmining.io/cdn/shop/t/1/assets/component-slider.css?v=164911113917242421521642550254" media="all" onLoad="this.media='all'" />
+            <section id="shopify-section-template--14480007561261__1644260525107253b5" className="shopify-section spaced-section spaced-section--full-width"><link rel="stylesheet" href="//www.revolutionmining.io/cdn/shop/t/1/assets/component-slider.css?v=164911113917242421521642550254" media="all"  />
                 <div className="blog featured-blog-wrapper mt-10" style={{backgroundImage: "url(/images/Purple_Mesh.png)"}}>
                     <div className="page-width-desktop">
                         <div className="title-wrapper-without-link title-wrapper--self-padded-tablet-down">

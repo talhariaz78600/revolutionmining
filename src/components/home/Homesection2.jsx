@@ -7,7 +7,7 @@ const Homesection2 = () => {
                 <div className="center">
                     <a> </a>
                     <div className="image-wrapper">
-                        <Image srcset="/images/Database-03.jpg" alt="Maximize Your Bitcoin Mining with High-Quality Equipment" width="2534" height="1201.0" className="lazy" />
+                        <Image src="/images/Database-03.jpg" alt="Maximize Your Bitcoin Mining with High-Quality Equipment" width="2534" height="1201" className="lazy" />
                     </div>
 
                 </div>

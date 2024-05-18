@@ -12,12 +12,12 @@ const Newsletter = () => {
                             <div className="newsletter__subheading1 rte"><p>Stay up-to-date with authentic articles, research, news, and exclusive offers.  </p></div>
                         </div>
                         <div className="grid__item">
-                            <form method="post" action="/contact#contact_form" id="contact_form" accept-charset="UTF-8" className="newsletter-form"><input type="hidden" name="form_type" value="customer" /><input type="hidden" name="utf8" value="✓" />
-                                <input type="hidden" name="contact[tags]" value="newsletter" />
+                            <form method="post" action="/contact#contact_form" id="contact_form" acceptCharset="UTF-8" className="newsletter-form"><input type="hidden" name="form_type"  /><input type="hidden" name="utf8" />
+                                <input type="hidden" name="contact[tags]"  />
                                 <div className="newsletter-form__field-wrapper">
                                     <div className="field">
-                                        <input id="NewsletterForm--template--14480007561261__164429854417234f57" type="email" name="contact[email]" className="field__input" value="" aria-required="true" autocorrect="off" autocapitalize="off" autocomplete="email" placeholder="Email address" required="" />
-                                        <label className="field__label" for="NewsletterForm--template--14480007561261__164429854417234f57">
+                                        <input id="NewsletterForm--template--14480007561261__164429854417234f57" type="email" name="contact[email]" className="field__input"  aria-required="true" autoCorrect="off" autoCapitalize="off" autoComplete="email" placeholder="Email address" required="" />
+                                        <label className="field__label" htmlFor="NewsletterForm--template--14480007561261__164429854417234f57">
                                             Email address
                                         </label>
                                         <button type="submit" className="button button--primary" name="commit" id="Subscribe" aria-label="Subscribe">Subscribe</button>
