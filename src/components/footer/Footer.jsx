@@ -27,9 +27,9 @@ const Footer = () => {
                             <div className="footer-block grid__item">
                                 <div className="footer-block__details-content rte">
                                     <p></p>
-                                    <p><strong>Call or Text us: </strong>213-534-6525</p>
-                                    <p><strong>Email us: </strong>team@revolutionmining.io</p>
-                                    <p><strong>Hours:</strong><br />MonâFri: 8am-6pm PST<br />Sat-Sun: Closed</p>
+                                    <p className='my-5'><strong>Call or Text us: </strong>213-534-6525</p>
+                                    <p className='my-5'><strong>Email us: </strong>team@revolutionmining.io</p>
+                                    <p className='my-5'><strong>Hours:</strong><br />Mon–Fri: 8am-6pm PST<br />Sat-Sun: Closed</p>
                                 </div>
                             </div>
                             <div className="footer-block grid__item">

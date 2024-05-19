@@ -56,37 +56,37 @@ const Headernav = () => {
                                     <div className="menu-drawer__navigation-container">
                                         <nav className="menu-drawer__navigation">
                                             <ul className="menu-drawer__menu list-menu" role="list">
-                                                <li><a href="/collections/asics"
+                                                <li><Link href="/collections/asics"
                                                     className="menu-drawer__menu-item list-menu__item link link--text focus-inset">
                                                     Equipment
-                                                </a></li>
-                                                <li><a href="/pages/hosting"
+                                                </Link></li>
+                                                <li><Link href="/pages/hosting"
                                                     className="menu-drawer__menu-item list-menu__item link link--text focus-inset">
                                                     Hosting
-                                                </a></li>
-                                                <li><a href="/collections/specials"
+                                                </Link></li>
+                                                <li><Link href="/collections/specials"
                                                     className="menu-drawer__menu-item list-menu__item link link--text focus-inset menu-drawer__menu-item--active"
                                                     aria-current="page">
                                                     Specials
-                                                </a></li>
-                                                <li><a href="/blogs/the-revolution-blog"
+                                                </Link></li>
+                                                <li><Link href="/blogs/the-revolution-blog"
                                                     className="menu-drawer__menu-item list-menu__item link link--text focus-inset">
                                                     Blog
-                                                </a></li>
-                                                <li><a href="/pages/company"
+                                                </Link></li>
+                                                <li><Link href="/pages/company"
                                                     className="menu-drawer__menu-item list-menu__item link link--text focus-inset">
                                                     Company
-                                                </a></li>
+                                                </Link></li>
                                             </ul>
                                             <div className="additional center">
 
-                                                <a href="/account/login" className="button button--primary"
-                                                    id="customer_login_link">Log in</a>
+                                                <Link href="/account/login" className="button button--primary"
+                                                    id="customer_login_link">Log in</Link>
 
-                                                <a href="/pages/contact" className="button button--secondary">Contact us</a>
+                                                <Link href="/pages/contact" className="button button--secondary">Contact us</Link>
                                             </div>
                                         </nav>
-                                        <div className="menu-drawer__utility-links"><a href="/account/login"
+                                        <div className="menu-drawer__utility-links"><Link href="/account/login"
                                             className="menu-drawer__account link focus-inset h5">
                                             <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"
                                                 role="presentation" className="icon icon-account" fill="none"
@@ -96,10 +96,10 @@ const Headernav = () => {
                                                     fill="currentColor" />
                                             </svg>
 
-                                            Log in</a>
+                                            Log in</Link>
                                             <ul className="list list-social list-unstyled" role="list">
                                                 <li className="list-social__item">
-                                                    <a href="https://twitter.com/RevolMining"
+                                                    <Link href="https://twitter.com/RevolMining"
                                                         className="list-social__link link"><svg aria-hidden="true"
                                                             focusable="false" role="presentation" className="icon icon-twitter"
                                                             viewBox="0 0 18 15">
@@ -107,10 +107,10 @@ const Headernav = () => {
                                                                 d="M17.64 2.6a7.33 7.33 0 01-1.75 1.82c0 .05 0 .13.02.23l.02.23a9.97 9.97 0 01-1.69 5.54c-.57.85-1.24 1.62-2.02 2.28a9.09 9.09 0 01-2.82 1.6 10.23 10.23 0 01-8.9-.98c.34.02.61.04.83.04 1.64 0 3.1-.5 4.38-1.5a3.6 3.6 0 01-3.3-2.45A2.91 2.91 0 004 9.35a3.47 3.47 0 01-2.02-1.21 3.37 3.37 0 01-.8-2.22v-.03c.46.24.98.37 1.58.4a3.45 3.45 0 01-1.54-2.9c0-.61.14-1.2.45-1.79a9.68 9.68 0 003.2 2.6 10 10 0 004.08 1.07 3 3 0 01-.13-.8c0-.97.34-1.8 1.03-2.48A3.45 3.45 0 0112.4.96a3.49 3.49 0 012.54 1.1c.8-.15 1.54-.44 2.23-.85a3.4 3.4 0 01-1.54 1.94c.74-.1 1.4-.28 2.01-.54z" />
                                                         </svg>
                                                         <span className="visually-hidden">Twitter</span>
-                                                    </a>
+                                                    </Link>
                                                 </li>
                                                 <li className="list-social__item">
-                                                    <a href="https://www.facebook.com/RevolMining"
+                                                    <Link href="https://www.facebook.com/RevolMining"
                                                         className="list-social__link link"><svg aria-hidden="true"
                                                             focusable="false" role="presentation" className="icon icon-facebook"
                                                             viewBox="0 0 18 18">
@@ -118,10 +118,10 @@ const Headernav = () => {
                                                                 d="M16.42.61c.27 0 .5.1.69.28.19.2.28.42.28.7v15.44c0 .27-.1.5-.28.69a.94.94 0 01-.7.28h-4.39v-6.7h2.25l.31-2.65h-2.56v-1.7c0-.4.1-.72.28-.93.18-.2.5-.32 1-.32h1.37V3.35c-.6-.06-1.27-.1-2.01-.1-1.01 0-1.83.3-2.45.9-.62.6-.93 1.44-.93 2.53v1.97H7.04v2.65h2.24V18H.98c-.28 0-.5-.1-.7-.28a.94.94 0 01-.28-.7V1.59c0-.27.1-.5.28-.69a.94.94 0 01.7-.28h15.44z" />
                                                         </svg>
                                                         <span className="visually-hidden">Facebook</span>
-                                                    </a>
+                                                    </Link>
                                                 </li>
                                                 <li className="list-social__item">
-                                                    <a href="https://www.instagram.com/revolutionmining"
+                                                    <Link href="https://www.instagram.com/revolutionmining"
                                                         className="list-social__link link"><svg aria-hidden="true"
                                                             focusable="false" role="presentation"
                                                             className="icon icon-instagram" viewBox="0 0 18 18">
@@ -131,7 +131,7 @@ const Headernav = () => {
                                                                 d="M8.8 4a4.5 4.5 0 100 9 4.5 4.5 0 000-9zm0 7.43a2.92 2.92 0 110-5.85 2.92 2.92 0 010 5.85zM13.43 5a1.05 1.05 0 100-2.1 1.05 1.05 0 000 2.1z" />
                                                         </svg>
                                                         <span className="visually-hidden">Instagram</span>
-                                                    </a>
+                                                    </Link>
                                                 </li>
                                             </ul>
                                         </div>
@@ -139,53 +139,53 @@ const Headernav = () => {
                                 </div>
                             </div>
                         </details>
-                    </header-drawer><a href="/" className="header__heading-link link link--text focus-inset"><img
+                    </header-drawer><Link href="/" className="header__heading-link link link--text focus-inset"><img
                         srcSet="//www.revolutionmining.io/cdn/shop/files/Revolution_Mining_-_white_190x.png?v=1679084013 1x, //www.revolutionmining.io/cdn/shop/files/Revolution_Mining_-_white_190x@2x.png?v=1679084013 2x"
                         src="//www.revolutionmining.io/cdn/shop/files/Revolution_Mining_-_white_190x.png?v=1679084013"
                         loading="lazy" className="header__heading-logo" width="1005" height="191"
-                        alt="Revolution Mining" /></a>
+                        alt="Revolution Mining" /></Link>
                         <nav className="header__inline-menu">
                             <ul className="list-menu list-menu--inline" role="list">
-                                <li><a href="/collections/asics"
+                                <li><Link href="/collections/asics"
                                     className="header__menu-item header__menu-item list-menu__item link link--text focus-inset">
                                     <span>Equipment</span>
-                                </a></li>
-                                <li><a href="/pages/hosting"
+                                </Link></li>
+                                <li><Link href="/pages/hosting"
                                     className="header__menu-item header__menu-item list-menu__item link link--text focus-inset">
                                     <span>Hosting</span>
-                                </a></li>
-                                <li><a href="/collections/specials"
+                                </Link></li>
+                                <li><Link href="/collections/specials"
                                     className="header__menu-item header__menu-item list-menu__item link link--text focus-inset"
                                     aria-current="page">
                                     <span className="header__active-menu-item">Specials</span>
-                                </a></li>
-                                <li><a href="/blogs/the-revolution-blog"
+                                </Link></li>
+                                <li><Link href="/blogs/the-revolution-blog"
                                     className="header__menu-item header__menu-item list-menu__item link link--text focus-inset">
                                     <span>Blog</span>
-                                </a></li>
-                                <li><a href="/pages/company"
+                                </Link></li>
+                                <li><Link href="/pages/company"
                                     className="header__menu-item header__menu-item list-menu__item link link--text focus-inset">
                                     <span>Company</span>
-                                </a></li>
+                                </Link></li>
                             </ul>
                         </nav>
                         <div className="header__icons">
 
 
-                            <a href="/cart" className="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble"><svg
+                            <Link href="/cart" className="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble"><svg
                                 className="icon icon-cart-empty" aria-hidden="true" focusable="false" role="presentation"
                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                                 <path fill="currentColor"
                                     d="M551.991 64H129.28l-8.329-44.423C118.822 8.226 108.911 0 97.362 0H12C5.373 0 0 5.373 0 12v8c0 6.627 5.373 12 12 12h78.72l69.927 372.946C150.305 416.314 144 431.42 144 448c0 35.346 28.654 64 64 64s64-28.654 64-64a63.681 63.681 0 0 0-8.583-32h145.167a63.681 63.681 0 0 0-8.583 32c0 35.346 28.654 64 64 64 35.346 0 64-28.654 64-64 0-17.993-7.435-34.24-19.388-45.868C506.022 391.891 496.76 384 485.328 384H189.28l-12-64h331.381c11.368 0 21.177-7.976 23.496-19.105l43.331-208C578.592 77.991 567.215 64 551.991 64zM240 448c0 17.645-14.355 32-32 32s-32-14.355-32-32 14.355-32 32-32 32 14.355 32 32zm224 32c-17.645 0-32-14.355-32-32s14.355-32 32-32 32 14.355 32 32-14.355 32-32 32zm38.156-192H171.28l-36-192h406.876l-40 192z">
                                 </path>
-                            </svg><span className="visually-hidden">Cart</span></a>
+                            </svg><span className="visually-hidden">Cart</span></Link>
                             <div className="header__right medium-hide small-hide">
 
 
-                                <a href="/account/login" className="button button--primary" id="customer_login_link">Log in</a>
+                                <Link href="/account/login" className="button button--primary" id="customer_login_link">Log in</Link>
 
 
-                                <a href="/pages/contact" className="button button--secondary">Contact us</a>
+                                <Link href="/pages/contact" className="button button--secondary">Contact us</Link>
 
                             </div>
                         </div>
