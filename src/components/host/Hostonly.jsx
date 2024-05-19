@@ -148,7 +148,7 @@ const Hostonly = () => {
                   <p><strong>Additional Info:</strong><br />* Revolution Mining has 15MW of power capacity in West Texas’ crypto country. <br />&nbsp;<br />* Our site uses clean renewable energy powered by Texas’ reliable transmission system on the ERCOT power grid with 98% uptime.<br /><br />* Site will be fully monitored with leading ASIC monitoring tools and expert staff for maintenance and repair.<br />&nbsp;<br />* Revolution Mining is ready to start taking deposits and receive miners for a 1-year term, with an option to renew for 1 or 2 additional years. Promo rate of  $0.069/kWh USD is only guaranteed for the first 12 months.<br />&nbsp;<br />There are still slots available for any air-cooled ASICS up to 3800 Watts each.&nbsp;<br />&nbsp;<br />Reserve your space today! Contact Revolution Mining to receive the hosting agreement and get started.</p>
                 </div>
                 <div className="banner__buttons">
-                  <Link href="/pages/contact" className="button button--primary">
+                  <Link href="/contact" className="button button--primary">
                     Get Hosting Only
                   </Link>
                 </div>

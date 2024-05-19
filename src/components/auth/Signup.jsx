@@ -3,8 +3,8 @@ import "../../assets/css/customer.css"
 const Signup = () => {
   return (
     <>
-<main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
-<div class="customer register">
+<main id="MainContent" className="content-for-layout focus-none" role="main" tabIndex="-1">
+<div className="customer register">
   <svg style={{display: "none"}}>
     <symbol id="icon-error" viewBox="0 0 13 13">
       <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"></circle>
@@ -18,26 +18,26 @@ const Signup = () => {
   </h1><form method="post" action="/account" id="create_customer" accept-charset="UTF-8" data-login-with-shop-sign-up="true" novalidate="novalidate">
   <input type="hidden" name="form_type" value="create_customer"/>
   <input type="hidden" name="utf8" value="✓"/>
-  <div class="field">      
+  <div className="field">      
       <input type="text" name="customer[first_name]" id="RegisterForm-FirstName" autocomplete="given-name" placeholder="First name"/>
-      <label for="RegisterForm-FirstName">
+      <label htmlFor="RegisterForm-FirstName">
         First name
       </label>
     </div>
-    <div class="field">
+    <div className="field">
       <input type="text" name="customer[last_name]" id="RegisterForm-LastName" autocomplete="family-name" placeholder="Last name"/>
-      <label for="RegisterForm-LastName">
+      <label htmlFor="RegisterForm-LastName">
         Last name
       </label>
     </div>
-    <div class="field">      
+    <div className="field">      
       <input type="email" name="customer[email]" id="RegisterForm-email" spellcheck="false" autocapitalize="off" autocomplete="email" aria-required="true" placeholder="Email"/>
-      <label for="RegisterForm-email">
+      <label htmlFor="RegisterForm-email">
         Email
       </label>
-    </div><div class="field">     
+    </div><div className="field">     
       <input type="password" name="customer[password]" id="RegisterForm-password" aria-required="true" placeholder="Password"/>
-      <label for="RegisterForm-password">
+      <label htmlFor="RegisterForm-password">
         Password
       </label>
     </div><button>

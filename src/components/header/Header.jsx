@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { useState } from "react";
 const Headernav = () => {
 
   return (
@@ -75,9 +74,7 @@ const Headernav = () => {
                 </summary>
                 <div
                   id="menu-drawer"
-                  className={` motion-reduce ${
-                    isMenuOpen ? "menu-drawer--open" : ""
-                  }`}
+                  className={` motion-reduce menu-drawer--open`}
                   tabIndex="-1"
                 >
                   <div className="menu-drawer__inner-container">

@@ -6,11 +6,7 @@ const page = () => {
   return (
     <div>
         <HostheroSection/>
-<<<<<<< HEAD
-=======
         <HostheroSection1/>
-      
->>>>>>> d98be5808f31bebe774cb921163c2e45741838ef
     </div>
   );
 }
