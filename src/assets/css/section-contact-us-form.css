@@ -1,0 +1,93 @@
+.contact-us {
+    background: transparent linear-gradient(117deg, #423bde59, #b980f959) 0% 0% no-repeat padding-box;
+    border-radius: 32px;
+    padding: 30px 50px;
+    max-width: 900px;
+}
+
+.contact-us .grid {
+    margin-bottom: 0;
+    align-items: center
+}
+
+.contact-form {
+    margin-top: 50px
+}
+
+.contact-form-wrapper {
+    background: linear-gradient(139deg, #fff3, #ffffff06);
+    border: 1px solid #FFFFFF33;
+    border-radius: 32px;
+    opacity: 1;
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    margin-top: -120px;
+    margin-bottom: -80px;
+    padding: 30px 50px 50px;
+    width: 500px;
+    max-width: 100%
+}
+
+.contact-form .cfield {
+    margin-bottom: 30px
+}
+
+.contact-info {
+    margin-left: 50px
+}
+
+.contact-us .text-area {
+    min-height: auto
+}
+
+.contact-us .field__input:focus {
+    padding: .6rem 1rem
+}
+
+.contact-info .list-social {
+    justify-content: flex-start
+}
+
+.contact-info path,
+.contact-info rect {
+    fill: #fff
+}
+
+.contact-us .form__label {
+    padding-left: 10px
+}
+
+.contact-us .field__input {
+    border-radius: 10px;
+    background: #07071359;
+    border: none;
+    height: auto;
+    padding: .6rem 1rem;
+    box-shadow: none
+}
+
+.contact-us .button {
+    background: transparent;
+    border: 1px solid #ededed
+}
+
+@media screen and (max-width: 986px) {
+    .contact-form-wrapper {
+        margin-top: 0;
+        margin-bottom: 0;
+        background: transparent;
+        border: none
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .contact-form-wrapper {
+        padding: 0;
+        margin-bottom: 30px
+    }
+    .contact-info {
+        margin-left: 0
+    }
+}
+
+/*# sourceMappingURL=/cdn/shop/t/1/assets/section-contact-us-form.css.map?v=181579623403881558621644520601 */

@@ -20,8 +20,6 @@ const Product = ({ title, description, data, filter }) => {
                         </div>
                         {filter && <facet-filters-form className="facets small-hide">
                             <form id="FacetFiltersForm" className="facets__form">
-
-
                                 <div className="facet-filters sorting caption">
                                     <div className="facet-filters__field">
                                         <h2 className="facet-filters__label caption-large text-body">
@@ -31,10 +29,8 @@ const Product = ({ title, description, data, filter }) => {
                                             <svg aria-hidden="true" focusable="false" role="presentation" className="icon icon-caret" viewBox="0 0 10 6">
                                                 <path fillRule="evenodd" clipRule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
                                                 </path></svg>
-
                                         </div>
                                     </div>
-
                                     <noscript>
                                         <button type="submit" className="facets__button-no-js button button--tertiary">Sort</button>
                                     </noscript>
