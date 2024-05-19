@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Link from 'next/link';
 const Footer = () => {
     return (
         <div>
@@ -35,60 +35,60 @@ const Footer = () => {
                             <div className="footer-block grid__item">
                                 <ul className="footer-block__details-content list-unstyled">
                                     <li>
-                                        <a href="/pages/policy" className="link link--text list-menu__item list-menu__item--link">
+                                        <Link href="/pages/terms-of-service" className="link link--text list-menu__item list-menu__item--link">
                                             Privacy Policy
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a href="/policies/terms-of-service"
+                                        <Link href="/pages/terms-of-service"
                                             className="link link--text list-menu__item list-menu__item--link">
                                             Terms of Service
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a href="/pages/hostingagreement"
+                                        <Link href="/pages/terms-of-service"
                                             className="link link--text list-menu__item list-menu__item--link">
                                             Hosting Agreement
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a href="/pages/purchaseagreement"
+                                        <Link href="/pages/terms-of-service"
                                             className="link link--text list-menu__item list-menu__item--link">
                                             Purchase Agreement
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a href="/policies/refund-policy"
+                                        <Link href="/pages/terms-of-service"
                                             className="link link--text list-menu__item list-menu__item--link">
                                             Refund Policy
-                                        </a>
+                                        </Link>
                                     </li>
                                 </ul>
                             </div>
                             <div className="footer-block grid__item">
                                 <ul className="footer__list-social list-unstyled list-social" role="list">
                                     <li className="list-social__item">
-                                        <a rel="nofollow" href="https://twitter.com/RevolMining"
+                                        <Link rel="nofollow" href="https://twitter.com/RevolMining"
                                             className="link list-social__link"><svg aria-hidden="true" focusable="false"
                                                 role="presentation" className="icon icon-twitter" viewBox="0 0 18 15">
                                                 <path fill="currentColor"
                                                     d="M17.64 2.6a7.33 7.33 0 01-1.75 1.82c0 .05 0 .13.02.23l.02.23a9.97 9.97 0 01-1.69 5.54c-.57.85-1.24 1.62-2.02 2.28a9.09 9.09 0 01-2.82 1.6 10.23 10.23 0 01-8.9-.98c.34.02.61.04.83.04 1.64 0 3.1-.5 4.38-1.5a3.6 3.6 0 01-3.3-2.45A2.91 2.91 0 004 9.35a3.47 3.47 0 01-2.02-1.21 3.37 3.37 0 01-.8-2.22v-.03c.46.24.98.37 1.58.4a3.45 3.45 0 01-1.54-2.9c0-.61.14-1.2.45-1.79a9.68 9.68 0 003.2 2.6 10 10 0 004.08 1.07 3 3 0 01-.13-.8c0-.97.34-1.8 1.03-2.48A3.45 3.45 0 0112.4.96a3.49 3.49 0 012.54 1.1c.8-.15 1.54-.44 2.23-.85a3.4 3.4 0 01-1.54 1.94c.74-.1 1.4-.28 2.01-.54z" />
                                             </svg>
                                             <span className="visually-hidden1">Twitter</span>
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li className="list-social__item">
-                                        <a rel="nofollow" href="https://www.facebook.com/RevolMining"
+                                        <Link rel="nofollow" href="https://www.facebook.com/RevolMining"
                                             className="link list-social__link"><svg aria-hidden="true" focusable="false"
                                                 role="presentation" className="icon icon-facebook" viewBox="0 0 18 18">
                                                 <path fill="currentColor"
                                                     d="M16.42.61c.27 0 .5.1.69.28.19.2.28.42.28.7v15.44c0 .27-.1.5-.28.69a.94.94 0 01-.7.28h-4.39v-6.7h2.25l.31-2.65h-2.56v-1.7c0-.4.1-.72.28-.93.18-.2.5-.32 1-.32h1.37V3.35c-.6-.06-1.27-.1-2.01-.1-1.01 0-1.83.3-2.45.9-.62.6-.93 1.44-.93 2.53v1.97H7.04v2.65h2.24V18H.98c-.28 0-.5-.1-.7-.28a.94.94 0 01-.28-.7V1.59c0-.27.1-.5.28-.69a.94.94 0 01.7-.28h15.44z" />
                                             </svg>
                                             <span className="visually-hidden1">Facebook</span>
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li className="list-social__item">
-                                        <a rel="nofollow" href="https://www.instagram.com/revolutionmining"
+                                        <Link rel="nofollow" href="https://www.instagram.com/revolutionmining"
                                             className="link list-social__link"><svg aria-hidden="true" focusable="false"
                                                 role="presentation" className="icon icon-instagram" viewBox="0 0 18 18">
                                                 <path fill="currentColor"
@@ -97,10 +97,10 @@ const Footer = () => {
                                                     d="M8.8 4a4.5 4.5 0 100 9 4.5 4.5 0 000-9zm0 7.43a2.92 2.92 0 110-5.85 2.92 2.92 0 010 5.85zM13.43 5a1.05 1.05 0 100-2.1 1.05 1.05 0 000 2.1z"/>
                                             </svg>
                                             <span className="visually-hidden1">Instagram</span>
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li className="list-social__item">
-                                        <a rel="nofollow" href="https://t.me/revolution_mining_official"
+                                        <Link rel="nofollow" href="https://t.me/revolution_mining_official"
                                             className="link list-social__link"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                 aria-hidden="true" focusable="false" role="presentation" className="icon icon-arrow"
                                                 viewBox="0 0 12.537 10.562">
@@ -115,7 +115,7 @@ const Footer = () => {
                                                     d="M96.724,588.765l-11.466,4.468a.418.418,0,0,0,.033.79l2.914.86,1.087,3.45a.5.5,0,0,0,.835.2L91.634,597l2.956,2.17a.617.617,0,0,0,.969-.371l1.958-9.359a.59.59,0,0,0-.792-.67Zm-1.437,2.077-5.326,4.71a.286.286,0,0,0-.095.182l-.2,1.823a.055.055,0,0,1-.108.01l-.844-2.718a.286.286,0,0,1,.123-.328l6.289-3.9a.139.139,0,0,1,.165.222Zm0,0"
                                                     transform="translate(-84.992 -588.724)" fill="url(#linear-gradient)" />
                                             </svg><span className="visually-hidden1">Telegram</span>
-                                        </a>
+                                        </Link>
                                     </li>
                                 </ul>
                             </div>
