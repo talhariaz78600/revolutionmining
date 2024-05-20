@@ -7,10 +7,10 @@ const LatestBlog = () => {
     return (
         <div>
             <section id="shopify-section-template--14480007561261__1644260525107253b5" className="shopify-section spaced-section spaced-section--full-width">
-                <div className="blog featured-blog-wrapper mt-10" style={{backgroundImage: "url(/images/Purple_Mesh.png)"}}>
+                <div className="blog featured-blog-wrapper mt-12" style={{backgroundImage: "url(/images/Purple_Mesh.png)"}}>
                     <div className="page-width-desktop">
                         <div className="title-wrapper-without-link title-wrapper--self-padded-tablet-down">
-                            <h3 className="blog__title center">The Latest from Revolution</h3>
+                            <h3 className="blog__title center my-5">The Latest from Revolution</h3>
                         </div><slider-component className="slider-mobile-gutter">
                             <ul id="Slider-template--14480007561261__1644260525107253b5" className="blog__posts articles-wrapper grid grid--peek grid--2-col-tablet grid--4-col-desktop slider slider--tablet" role="list"><li id="Slide-template--14480007561261__1644260525107253b5-1" className="blog__post grid__item article slider__slide slider__slide--full-width">
 

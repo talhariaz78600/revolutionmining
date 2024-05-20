@@ -15,7 +15,7 @@ const ProductCard = ({data}) => {
                         className="bg_collection" />
                     <ul id="product-grid" data-id="template--14480007495725__product-grid"
                         className="grid grid--1-col negative-margin product-grid  grid--3-col-desktop">
-                    {data.map((item,index)=>{ return <li key={index} className="grid__item">
+                    {data.map((item,index)=>{ return <li key={index} className="grid__item my-4">
                             <div className="card-wrapper">
                                 <h3 className="card-information__text h4">
                                     {item.name}

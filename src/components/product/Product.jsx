@@ -35,7 +35,7 @@ const Product = ({ title, description, data, filter }) => {
                                         <button type="submit" className="facets__button-no-js button button--tertiary">Sort</button>
                                     </noscript>
                                 </div><div className="product-count light" role="status">
-                                    <h2 className="product-count__text text-body">
+                                    <h2 className="product-count__text text-body well-changing">
                                         <span id="ProductCountDesktop">{data.length} products
                                         </span>
                                     </h2>
