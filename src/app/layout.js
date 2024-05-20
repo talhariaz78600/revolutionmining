@@ -39,6 +39,7 @@ export default function RootLayout({ children }) {
       <Missdrop/>
         {children}
         <Footer/>
+        <script src="https://kit.fontawesome.com/94794741f1.js" crossorigin="anonymous"></script>
         </body>
     </html>
   );

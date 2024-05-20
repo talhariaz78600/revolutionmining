@@ -111,3 +111,13 @@ summary.list-menu__item {
       padding-top: 0.5rem;
   }
 }
+
+.well-changing{
+  display: flex;
+}
+
+@media (max-width: 750px) and (min-width: 350px) {
+  .well-changing{
+    display: none;
+  }
+}
