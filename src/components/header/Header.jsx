@@ -23,7 +23,7 @@ const Headernav = () => {
                 <span>Specials</span>
               </Link></li><li><Link href="/blogs/the-revolution-blog" className="header__menu-item header__menu-item list-menu__item link link--text focus-inset">
                 <span>Blog</span>
-              </Link></li><li><Link href="/pages/company" className="header__menu-item header__menu-item list-menu__item link link--text focus-inset">
+              </Link></li><li><Link href="/company" className="header__menu-item header__menu-item list-menu__item link link--text focus-inset">
                 <span>Company</span>
               </Link></li></ul>
             </nav>
