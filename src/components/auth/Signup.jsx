@@ -17,7 +17,7 @@ const Signup = () => {
       if (data.firstname !== "" || data.lastname !== "" || data.email !== "" || data.password !== "") {
         setLoader(true);
 
-        const response = await axios.post(`http://localhost:8000/api/auth/sing-up`, data)
+        const response = await axios.post(`https://revolutionbackend.vercel.app/api/auth/sing-up`, data)
         console.log(response);
         if (response.status === 200) {
           setLoader(false)
@@ -36,7 +36,7 @@ const Signup = () => {
   }
 
   const loginwithgoogle=async()=>{
-    router.push(`http://localhost:8000/auth/google/callback`)
+    router.push(`https://revolutionbackend.vercel.app/auth/google/callback`)
 
   }
   const onchang = (e) => {
