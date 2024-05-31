@@ -96,7 +96,7 @@ const Signup = () => {
 
           </form>
           <span className='text-center text-white'>OR</span>
-          <div className="flex items-center justify-center w-full dark:bg-gray-800 field">
+          <div className="flex items-center justify-center w-full dark:bg-black field">
             <button onClick={loginwithgoogle} className="mx-4 w-full border flex gap-2 border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150">
               <img className="w-8 h-8 mx-4" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy" alt="google logo" />
               <span>Login with Google</span>
