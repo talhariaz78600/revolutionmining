@@ -16,9 +16,9 @@ const ProductCard = ({data}) => {
                     <ul id="product-grid" data-id="template--14480007495725__product-grid"
                         className="grid grid--1-col negative-margin product-grid  grid--3-col-desktop">
                     {data.map((item,index)=>{ return <li key={index} className="grid__item my-4">
-                            <div className="card-wrapper">
+                            <div className="card-wrapper h-[610px]">
                                 <h3 className="card-information__text h4">
-                                    {item.name}
+                                    {item.title}
                                 </h3>
                                 <div className="card-information">
                                     <div className="card-information__wrapper">
@@ -45,14 +45,14 @@ const ProductCard = ({data}) => {
                                                     <span className="visually-hidden1 visually-hidden--inline">Price:
                                                     </span>
                                                     <span className="price-item price-item--regular">
-                                                    {item.price}
+                                                    ${item.price}
                                                     </span>
                                                 </div>
                                                 <div className="price__sale">
                                                     <span className="visually-hidden visually-hidden--inline">Sale
                                                         price</span>
                                                     <span className="price-item price-item--sale price-item--last">
-                                                        {item.price}
+                                                       ${item.price}
                                                     </span>
                                                 </div>
 
@@ -60,13 +60,13 @@ const ProductCard = ({data}) => {
                                         </div>
 
                                         <div className="card-detail">
-                                            <p className="py-5" data-mce-fragment="1"><strong>{item.machine}</strong>
+                                            <p className="py-3" data-mce-fragment="1">• Machines: <strong> {item.machines}</strong>
                                             </p>
                                             <p>• Condition: {item.condition}</p>
                                             {item.power &&<p>• {item.power}</p>}
-                                            <p>• Hosting Fee: {item.hostingfee}</p>
+                                            <p>• Hosting Fee: ${item.hostingfee}/month</p>
                                             <p>• Revolution Texas Facility </p>
-                                            <p>• Online Date: {item.onlinedate}</p>
+                                            <p>• Online Date: June 2024</p>
                                         </div>
 
 
@@ -90,8 +90,9 @@ const ProductCard = ({data}) => {
 
                                             <div className="product-form__buttons">
                                                 <button type="submit" name="add"
-                                                    className="product-form__submit mt-4 button button--full-width button--secondary">
-                                                    <span>Buy & Host</span>
+                                                    className="product-form__submit mt-4 button button--full-width button--secondary"
+                                                    disabled={item.status}>
+                                                    {item.status===false?<span>Buy & Host</span>:<span>Sold out</span>}
                                                     <div className="loading-overlay__spinner hidden">
                                                         <svg aria-hidden="true" focusable="false"
                                                             role="presentation" className="spinner" viewBox="0 0 66 66"
@@ -113,7 +114,7 @@ const ProductCard = ({data}) => {
                                             <div className="media--transparent media--adapt media--hover-effect"
                                             >
                                                 <Image
-                                                    src={item.src}
+                                                    src={item.imageUrl}
                                                     alt='productCard'
                                                     className='w-full h-[250px] transition duration-400 ease-in-out hover:scale-110'
 

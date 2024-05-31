@@ -27,6 +27,8 @@ import "../assets/css/component-card.css"
 import Headernav from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 import Missdrop from "@/components/missdrop/Missdrop";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 export const metadata = {
   title: "Revolution",
   description: "The purpose of this application is provide services to clients",
@@ -35,12 +37,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-      <Headernav/>
-      <Missdrop/>
+        <Headernav />
+        <Missdrop />
         {children}
-        <Footer/>
+        <ToastContainer position="bottom-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+        <Footer />
         <script src="https://kit.fontawesome.com/94794741f1.js" crossorigin="anonymous"></script>
-        </body>
+      </body>
     </html>
   );
 }

@@ -6,25 +6,26 @@ const Headernav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const data=usePathname()
   useEffect(() => {
+    // console.log(data);
     setMenuOpen(false);
   }, [data]);
   
   return (
-    <nav className={`${menuOpen ? "z-50 fixed" : ""} bg-black w-full shadow-lg `}>
+    <nav className={`${menuOpen ? "z-50 fixed h-screen" : ""} bg-black w-full shadow-lg `}>
       <div className="w-full mpx-8 md:px-40 py-5">
         <div className="flex justify-between">
           <div className="flex items-center space-x-1">
             <Link href="/" className="header__heading-link link link--text focus-inset mx-8"><img srcSet="//www.revolutionmining.io/cdn/shop/files/Revolution_Mining_-_white_190x.png?v=1679084013 1x, //www.revolutionmining.io/cdn/shop/files/Revolution_Mining_-_white_190x@2x.png?v=1679084013 2x" src="//www.revolutionmining.io/cdn/shop/files/Revolution_Mining_-_white_190x.png?v=1679084013" loading="lazy" className="header__heading-logo" width="1005" height="191" alt="Revolution Mining" /></Link><nav className="header__inline-menu">
               <ul className="list-menu list-menu--inline" role="list"><li><Link href="/collections/asics" className="header__menu-item header__menu-item list-menu__item link link--text focus-inset" aria-current="page">
-                <span className="header__active-menu-item">Equipment</span>
+                <span className={`${data==="/collections/asics"?"header__active-menu-item":""}`}>Equipment</span>
               </Link></li><li><Link href="/pages/hosting" className="header__menu-item header__menu-item list-menu__item link link--text focus-inset">
-                <span>Hosting</span>
+                <span className={`${data==="/pages/hosting"?"header__active-menu-item":""}`}>Hosting</span>
               </Link></li><li><Link href="/collections/specials" className="header__menu-item header__menu-item list-menu__item link link--text focus-inset">
-                <span>Specials</span>
-              </Link></li><li><Link href="/blogs/the-revolution-blog" className="header__menu-item header__menu-item list-menu__item link link--text focus-inset">
-                <span>Blog</span>
+                <span className={`${data==="/collections/specials"?"header__active-menu-item":""}`}>Specials</span>
+              </Link></li><li><Link href="/blogs/the-revolution-blog/1" className="header__menu-item header__menu-item list-menu__item link link--text focus-inset">
+                <span className={`${data==="/blogs/the-revolution-blog/1"?"header__active-menu-item":""}`}>Blog</span>
               </Link></li><li><Link href="/company" className="header__menu-item header__menu-item list-menu__item link link--text focus-inset">
-                <span>Company</span>
+                <span className={`${data==="/company"?"header__active-menu-item":""}`}>Company</span>
               </Link></li></ul>
             </nav>
           </div>
@@ -54,7 +55,7 @@ const Headernav = () => {
                   Hosting
                 </Link></li><li><Link href="/collections/specials" className="menu-drawer__menu-item list-menu__item link link--text focus-inset">
                   Specials
-                </Link></li><li><Link href="/blogs/the-revolution-blog" className="menu-drawer__menu-item list-menu__item link link--text focus-inset">
+                </Link></li><li><Link href="/blogs/the-revolution-blog/1" className="menu-drawer__menu-item list-menu__item link link--text focus-inset">
                   Blog
                 </Link></li><li><Link href="/company" className="menu-drawer__menu-item list-menu__item link link--text focus-inset">
                   Company

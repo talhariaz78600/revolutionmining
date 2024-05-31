@@ -1,40 +1,34 @@
 import React from 'react';
 import Product from '@/components/product/Product';
-const page = () => {
+const page = async() => {
+
+  const productdata = async () => {
+  
+    const response = await fetch(`https://revolutionbackend.vercel.app/api/product/getProducts`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      cache: "no-store"
+    })
+    const res = await response.json();
+    const data= res.finddata.filter((item)=>item.producttype==="special")
+    if (data < 1) {
+      redirect(`/not-found`)
+    }
+    else {
+
+      return  data
+    }
+
+
+}
+
+const product= await productdata()
     const data={
         title:"Specials",
         description:"Discover Exclusive Savings: Limited Quantities Available on our Special Deals and Bundles",
-        allspecial:[{
-            name:"Antminer S21 200TH Bundle",
-            price:"$15,000",
-            condition:"New",
-            machine:"Includes 3 Machines",
-            hostingfee:"$588/month",
-            onlinedate:"June 2024",
-            src:"/images/bundle.webp",
-            power:"6 TH | 3400 Watts "
-        },
-        {
-            name:"Antminer S21 200TH Bundle",
-            price:"$15,000",
-            condition:"New",
-            machine:"Includes 3 Machines",
-            hostingfee:"$588/month",
-            onlinedate:"June 2024",
-            src:"/images/bundle.webp",
-            power:"6 TH | 3400 Watts "
-        },
-        {
-            name:"Antminer S21 200TH Bundle",
-            price:"$15,000",
-            condition:"New",
-            machine:"Includes 3 Machines",
-            hostingfee:"$588/month",
-            onlinedate:"June 2024",
-            src:"/images/bundle.webp",
-            power:"6 TH | 3400 Watts "
-        }
-    ]
+        allspecial:product
     }
   return (
     <div>
