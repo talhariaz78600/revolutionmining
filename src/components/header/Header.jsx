@@ -1,15 +1,63 @@
 "use client"
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 const Headernav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const data=usePathname()
+  const data = usePathname()
+
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const userProfile = localStorage.getItem('userprofile');
+      if (userProfile) {
+        setUser(JSON.parse(userProfile));
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      if (typeof window !== 'undefined') {
+        const userProfile = localStorage.getItem('login');
+        if (userProfile) {
+          try {
+            const response = await fetch(`https://revolutionbackend.vercel.app/auth/login/success`,{
+              method:"GET",
+              headers:{
+                "Content-type":"application/json"
+              },
+              cache:"no-store"
+            });
+            console.log(await response.json());
+            // if (response.status === 200) {
+            //   toast.success(response.data.message);
+            //   const newUser = {
+            //     firstname: response.data.newuser.firstname,
+            //     lastname: response.data.newuser.lastname,
+            //     email: response.data.newuser.email,
+            //     sessionExpiration: response.data.newuser.sessionExpiration,
+            //   };
+            //   localStorage.setItem('userprofile', JSON.stringify(newUser));
+            //   setUser(newUser);
+            // }
+          } catch (error) {
+            toast.error(error.message);
+          }
+        }
+      }
+    };
+
+    fetchUserProfile();
+  }, []);
+
   useEffect(() => {
     // console.log(data);
     setMenuOpen(false);
   }, [data]);
-  
+
   return (
     <nav className={`${menuOpen ? "z-50 fixed h-screen" : ""} bg-black w-full shadow-lg `}>
       <div className="w-full mpx-8 md:px-40 py-5">
@@ -17,29 +65,29 @@ const Headernav = () => {
           <div className="flex items-center space-x-1">
             <Link href="/" className="header__heading-link link link--text focus-inset mx-8"><img srcSet="//www.revolutionmining.io/cdn/shop/files/Revolution_Mining_-_white_190x.png?v=1679084013 1x, //www.revolutionmining.io/cdn/shop/files/Revolution_Mining_-_white_190x@2x.png?v=1679084013 2x" src="//www.revolutionmining.io/cdn/shop/files/Revolution_Mining_-_white_190x.png?v=1679084013" loading="lazy" className="header__heading-logo" width="1005" height="191" alt="Revolution Mining" /></Link><nav className="header__inline-menu">
               <ul className="list-menu list-menu--inline" role="list"><li><Link href="/collections/asics" className="header__menu-item header__menu-item list-menu__item link link--text focus-inset" aria-current="page">
-                <span className={`${data==="/collections/asics"?"header__active-menu-item":""}`}>Equipment</span>
+                <span className={`${data === "/collections/asics" ? "header__active-menu-item" : ""}`}>Equipment</span>
               </Link></li><li><Link href="/pages/hosting" className="header__menu-item header__menu-item list-menu__item link link--text focus-inset">
-                <span className={`${data==="/pages/hosting"?"header__active-menu-item":""}`}>Hosting</span>
+                <span className={`${data === "/pages/hosting" ? "header__active-menu-item" : ""}`}>Hosting</span>
               </Link></li><li><Link href="/collections/specials" className="header__menu-item header__menu-item list-menu__item link link--text focus-inset">
-                <span className={`${data==="/collections/specials"?"header__active-menu-item":""}`}>Specials</span>
+                <span className={`${data === "/collections/specials" ? "header__active-menu-item" : ""}`}>Specials</span>
               </Link></li><li><Link href="/blogs/the-revolution-blog/1" className="header__menu-item header__menu-item list-menu__item link link--text focus-inset">
-                <span className={`${data==="/blogs/the-revolution-blog/1"?"header__active-menu-item":""}`}>Blog</span>
+                <span className={`${data === "/blogs/the-revolution-blog/1" ? "header__active-menu-item" : ""}`}>Blog</span>
               </Link></li><li><Link href="/company" className="header__menu-item header__menu-item list-menu__item link link--text focus-inset">
-                <span className={`${data==="/company"?"header__active-menu-item":""}`}>Company</span>
+                <span className={`${data === "/company" ? "header__active-menu-item" : ""}`}>Company</span>
               </Link></li></ul>
             </nav>
           </div>
           <div className='flex well-changing'>
             <div className=''>
-              <Link href="/authentication" className="px-8 py-2 button button--primary" id="customer_login_link">Log in</Link>
-              <Link href="/contact " className=" px-8 py-2  button button--secondary">Contact us</Link>
+              {<Link href="/authentication" className="px-8 py-2 button button--primary cursor-pointer" id="customer_login_link">{user ? "Hi " + user.firstname : "Login"}</Link>}
+              <Link href="/contact " className=" px-8 py-2  button button--secondary cursor-pointer">Contact us</Link>
 
             </div>
           </div>
 
           <div className="md:hidden flex items-center ">
             <button className="outline-none menu-button mx-2" onClick={() => setMenuOpen(!menuOpen)}>
-            {menuOpen?<i className="fa-solid fa-xmark text-5xl text-white"></i>:<i className="fa-solid fa-bars text-5xl text-white"></i>}
+              {menuOpen ? <i className="fa-solid fa-xmark text-5xl text-white"></i> : <i className="fa-solid fa-bars text-5xl text-white"></i>}
             </button>
           </div>
         </div>
@@ -62,13 +110,13 @@ const Headernav = () => {
                 </Link></li></ul>
                 <div className="additional center">
 
-                  <Link href="/authentication" className="button button--primary" id="customer_login_link">Log in</Link>
+                  <Link href="/authentication" className="button button--primary cursor-pointer" id="customer_login_link">{user ? "Hi " + user.firstname : "Login"}</Link>
 
                   <Link href="/contact" className="button button--secondary">Contact us</Link>
                 </div>
               </nav>
               <div className="menu-drawer__utility-links"><Link href="/authentication" className="menu-drawer__account link focus-inset h5">
-                <svg xmlns="http://www.w3.org/2000/svg"  focusable="false" role="presentation" className="icon icon-account" fill="none" viewBox="0 0 18 19">
+                <svg xmlns="http://www.w3.org/2000/svg" focusable="false" role="presentation" className="icon icon-account" fill="none" viewBox="0 0 18 19">
                   <path fillRule="evenodd" clipRule="evenodd" d="M6 4.5a3 3 0 116 0 3 3 0 01-6 0zm3-4a4 4 0 100 8 4 4 0 000-8zm5.58 12.15c1.12.82 1.83 2.24 1.91 4.85H1.51c.08-2.6.79-4.03 1.9-4.85C4.66 11.75 6.5 11.5 9 11.5s4.35.26 5.58 1.15zM9 10.5c-2.5 0-4.65.24-6.17 1.35C1.27 12.98.5 14.93.5 18v.5h17V18c0-3.07-.77-5.02-2.33-6.15-1.52-1.1-3.67-1.35-6.17-1.35z" fill="currentColor">
                   </path></svg>
 

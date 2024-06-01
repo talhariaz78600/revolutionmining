@@ -23,13 +23,18 @@ const Signup = () => {
           setLoader(false)
           setData({ firstname: "", lastname: "", email: '', password: "" });
           toast.success(response.data.message);
+          localStorage.setItem("userprofile", JSON.stringify({
+            firstname:response.data.newuser.firstname,lastname:response.data.newuser.lastname,email:response.data.newuser.email
+            ,sessionExpiration:response.data.newuser.sessionExpiration
+          }));
+          localStorage.setItem("login",false)
+          router.push("/")
         }
-
-
       }
     } catch (error) {
       toast.error(error.message);
       setLoader(false)
+   
     }
 
 
@@ -37,11 +42,13 @@ const Signup = () => {
 
   const loginwithgoogle=async()=>{
     router.push(`https://revolutionbackend.vercel.app/auth/google/callback`)
-
+    localStorage.setItem("login",true)
   }
   const onchang = (e) => {
     setData({ ...data, [e.target.name]: e.target.value })
   }
+
+
   return (
     <>
       <main id="MainContent" className="content-for-layout focus-none" role="main" tabIndex="-1">
