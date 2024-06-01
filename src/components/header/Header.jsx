@@ -3,10 +3,26 @@ import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
-import axios from 'axios';
+import { useSearchParams } from 'next/navigation'
+// import axios from 'axios';
 const Headernav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const data = usePathname()
+  const searchParams = useSearchParams();
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+      const userdata = searchParams.get('userdata');
+    console.log(userdata);
+      if (userdata) {
+          try {
+              const parsedData = JSON.parse(decodeURIComponent(userdata));
+              setUserData(parsedData);
+          } catch (error) {
+              console.error('Error parsing user data:', error);
+          }
+      }
+  }, [searchParams]);
 
   const [user, setUser] = useState(null);
   useEffect(() => {
@@ -24,11 +40,18 @@ const Headernav = () => {
         // const userProfile = localStorage.getItem('login');
         // if (userProfile) {
           // try {
-            const response = await fetch('https://revolutionbackend.vercel.app/auth/login/success',{
-              method:"GET",
+        await  fetch('https://revolutionbackend.vercel.app/auth/login/success', {
+              method: 'GET', 
               cache:"no-store"
-            });
-            console.log(await response.json());
+          })
+          .then(response => response.json())
+          .then(data => {
+              console.log('Success:', data);
+          })
+          .catch((error) => {
+              console.error('Error:', error);
+          });
+            // console.log(await res.json())
             // if (response.status === 200) {
             //   toast.success(response.data.message);
             //   const newUser = {
