@@ -29,6 +29,7 @@ import Footer from "@/components/footer/Footer";
 import Missdrop from "@/components/missdrop/Missdrop";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import { Suspense } from "react";
 export const metadata = {
   title: "Revolution",
   description: "The purpose of this application is provide services to clients",
@@ -37,7 +38,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
+        <Suspense>
         <Headernav />
+        </Suspense>
         <Missdrop />
         {children}
         <ToastContainer position="bottom-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />

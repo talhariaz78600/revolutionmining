@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
-import { Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 // import axios from 'axios';
 const Headernav = () => {
@@ -43,7 +42,7 @@ const Headernav = () => {
   }, [data]);
 
   return (
-    <Suspense>
+    
     <nav className={`${menuOpen ? "z-50 fixed h-screen" : ""} bg-black w-full shadow-lg `}>
       <div className="w-full mpx-8 md:px-40 py-5">
         <div className="flex justify-between">
@@ -130,7 +129,7 @@ const Headernav = () => {
           </div>
         </div>
       )}
-    </nav></Suspense>
+    </nav>
   );
 };
 
