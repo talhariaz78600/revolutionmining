@@ -34,44 +34,7 @@ const Headernav = () => {
     }
   }, []);
 
-  useEffect(() => {
-    const fetchUserProfile = async () => {
-      if (typeof window !== 'undefined') {
-        // const userProfile = localStorage.getItem('login');
-        // if (userProfile) {
-          // try {
-        await  fetch('https://revolutionbackend.vercel.app/auth/login/success', {
-              method: 'GET', 
-              cache:"no-store"
-          })
-          .then(response => response.json())
-          .then(data => {
-              console.log('Success:', data);
-          })
-          .catch((error) => {
-              console.error('Error:', error);
-          });
-            // console.log(await res.json())
-            // if (response.status === 200) {
-            //   toast.success(response.data.message);
-            //   const newUser = {
-            //     firstname: response.data.newuser.firstname,
-            //     lastname: response.data.newuser.lastname,
-            //     email: response.data.newuser.email,
-            //     sessionExpiration: response.data.newuser.sessionExpiration,
-            //   };
-            //   localStorage.setItem('userprofile', JSON.stringify(newUser));
-            //   setUser(newUser);
-            // }
-          // } catch (error) {
-          //   toast.error(error.message);
-          // }
-      //   }
-      }
-    };
 
-    fetchUserProfile();
-  }, []);
 
   useEffect(() => {
     // console.log(data);
