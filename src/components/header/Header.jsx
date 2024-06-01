@@ -21,17 +21,11 @@ const Headernav = () => {
   useEffect(() => {
     const fetchUserProfile = async () => {
       if (typeof window !== 'undefined') {
-        const userProfile = localStorage.getItem('login');
-        if (userProfile) {
-          try {
-            const response = await fetch(`https://revolutionbackend.vercel.app/auth/login/success`,{
-              method:"GET",
-              headers:{
-                "Content-type":"application/json"
-              },
-              cache:"no-store"
-            });
-            console.log(await response.json());
+        // const userProfile = localStorage.getItem('login');
+        // if (userProfile) {
+          // try {
+            const response = await axios.get('https://revolutionbackend.vercel.app/auth/login/success');
+            console.log(response)
             // if (response.status === 200) {
             //   toast.success(response.data.message);
             //   const newUser = {
@@ -43,10 +37,10 @@ const Headernav = () => {
             //   localStorage.setItem('userprofile', JSON.stringify(newUser));
             //   setUser(newUser);
             // }
-          } catch (error) {
-            toast.error(error.message);
-          }
-        }
+          // } catch (error) {
+          //   toast.error(error.message);
+          // }
+      //   }
       }
     };
 
