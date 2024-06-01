@@ -18,6 +18,10 @@ const Headernav = () => {
           try {
               const parsedData = JSON.parse(decodeURIComponent(userdata));
               setUserData(parsedData);
+              localStorage.setItem("userprofile", JSON.stringify({
+                firstname:parsedData.firstname,lastname:parsedData.lastname,email:parsedData.email
+                ,sessionExpiration:parsedData.sessionExpiration
+              }));
           } catch (error) {
               console.error('Error parsing user data:', error);
           }
@@ -32,7 +36,7 @@ const Headernav = () => {
         setUser(JSON.parse(userProfile));
       }
     }
-  }, []);
+  }, [searchParams]);
 
 
 
