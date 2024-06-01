@@ -24,8 +24,11 @@ const Headernav = () => {
         // const userProfile = localStorage.getItem('login');
         // if (userProfile) {
           // try {
-            const response = await axios.get('https://revolutionbackend.vercel.app/auth/login/success');
-            console.log(response)
+            const response = await fetch('https://revolutionbackend.vercel.app/auth/login/success',{
+              method:"GET",
+              cache:"no-store"
+            });
+            console.log(await response.json());
             // if (response.status === 200) {
             //   toast.success(response.data.message);
             //   const newUser = {
