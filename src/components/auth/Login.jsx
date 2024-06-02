@@ -29,7 +29,7 @@ const Login = () => {
             , sessionExpiration: response.data.user.sessionExpiration
           }));
           localStorage.setItem("login", false)
-          router.push("#login")
+          router.push("/")
         }
       }
     } catch (error) {
