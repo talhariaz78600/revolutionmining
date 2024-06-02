@@ -6,16 +6,16 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import { redirect, useRouter } from 'next/navigation';
 import { useState } from 'react';
-const Login = () => {
+const ResetPassword = () => {
   const router = useRouter();
   const [loader, setLoader] = useState(false);
-  const [data, setData] = useState({ email: '', password: "" })
+  const [data, setData] = useState({ confirmpassword:'', newpassword: "" })
   const login = async (e) => {
     e.preventDefault();
     console.log(data);
     try {
 
-      if (data.email !== "" || data.password !== "") {
+      if (data.confirmpassword !== "" || data.newpassword !== "") {
         setLoader(true);
 
         const response = await axios.post(`https://revolutionbackend.vercel.app/api/auth/login`, data)
@@ -46,23 +46,21 @@ const Login = () => {
       <main id="MainContent" className="content-for-layout focus-none" role="main" tabIndex="-1">
         <div className="customer login">
           <h1 id="login" tabindex="-1">
-            Login
+            Change password
           </h1>
           <div><form onSubmit={login} accept-charset="UTF-8" data-login-with-shop-sign-in="true" novalidate="novalidate"><input type="hidden" name="form_type" value="customer_login" /><input type="hidden" name="utf8" value="✓" /><div className="field">
-            <input type="email" name="email" required value={data.email} onChange={onchang} id="CustomerEmail" autocomplete="email" autocorrect="off" autocapitalize="off" placeholder="Email" />
-            <label htmlFor="CustomerEmail">
-              Email
-            </label>
-          </div><div className="field">
-              <input type="password" required value={data.password} onChange={onchang} name="password" id="CustomerPassword" autocomplete="current-password" placeholder="Password" />
+          <input type="password" required value={data.newpassword} onChange={onchang} name="newpassword" id="CustomerPassword" autocomplete="current-password" placeholder="Password" />
               <label htmlFor="CustomerPassword">
-                Password
+             New  Password
+              </label>
+          </div><div className="field">
+              <input type="password" required value={data.confirmpassword} onChange={onchang} name="confirmpassword" id="CustomerPassword" autocomplete="current-password" placeholder="Password" />
+              <label htmlFor="CustomerPassword">
+                Confirm Password
               </label>
             </div>
 
-            <Link href="/authentication/verification">
-              Forgot your password?
-            </Link><button type='submit'>
+           <button type='submit'>
             {loader ? <div
                 className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-secondary motion-reduce:animate-[spin_1.5s_linear_infinite]"
                 role="status">
@@ -70,10 +68,10 @@ const Login = () => {
                   className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
                 >Loading...</span
                 >
-              </div> : "Sign in"}
+              </div> : "Change password"}
             </button>
             <Link href="/authentication/signup">
-              Create account
+              Cancel
             </Link></form></div></div>
 
 
@@ -82,4 +80,4 @@ const Login = () => {
   )
 }
 
-export default Login;
+export default ResetPassword;
