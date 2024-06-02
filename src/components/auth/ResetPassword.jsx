@@ -5,31 +5,32 @@ import Link from 'next/link';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { redirect, useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation'
 import { useState } from 'react';
 const ResetPassword = () => {
   const router = useRouter();
   const [loader, setLoader] = useState(false);
+  const searchParams = useSearchParams();
+  const userdata = searchParams.get('data');
+  const parsedData = JSON.parse(decodeURIComponent(userdata));
+  // console.log(parsedData.user);
   const [data, setData] = useState({ confirmpassword:'', newpassword: "" })
   const login = async (e) => {
     e.preventDefault();
-    console.log(data);
+    // console.log(data);
     try {
 
-      if (data.confirmpassword !== "" || data.newpassword !== "") {
+      if (data.confirmpassword !== "" || data.newpassword !== "" || data.confirmpassword!==data.newpassword ) {
         setLoader(true);
 
-        const response = await axios.post(`https://revolutionbackend.vercel.app/api/auth/login`, data)
+        const response = await axios.post(`https://revolutionbackend.vercel.app/api/auth/forgot-password/${parsedData.user.id}/${parsedData.Verificationid}/set_new_password`, {password:data.confirmpassword})
         console.log(response);
         if (response.status === 200) {
           setLoader(false)
-          setData({ email: '', password: "" });
+       
           toast.success(response.data.message);
-          localStorage.setItem("userprofile", JSON.stringify({
-            firstname: response.data.user.firstname, lastname: response.data.user.lastname, email: response.data.user.email
-            , sessionExpiration: response.data.user.sessionExpiration
-          }));
-          localStorage.setItem("login", false)
-          router.push("#login")
+          
+          router.push("/authentication")
         }
       }
     } catch (error) {

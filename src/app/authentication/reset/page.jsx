@@ -1,9 +1,12 @@
 import React from 'react';
-import ResetPassword from "@/components/auth/ResetPassword"
+import ResetPassword from "@/components/auth/ResetPassword";
+import { Suspense } from "react";
 const page = () => {
   return (
     <div>
-      <ResetPassword/>
+      <Suspense>
+        <ResetPassword />
+      </Suspense>
     </div>
   );
 }
