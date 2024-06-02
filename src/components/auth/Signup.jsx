@@ -40,12 +40,12 @@ const Signup = () => {
 
   }
 
+  const onchang = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value })
+  }
   const loginwithgoogle=async()=>{
     router.push(`https://revolutionbackend.vercel.app/auth/google/callback`)
     localStorage.setItem("login",true)
-  }
-  const onchang = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value })
   }
 
 

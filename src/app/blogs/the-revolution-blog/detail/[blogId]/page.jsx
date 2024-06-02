@@ -1,6 +1,6 @@
 import BlogDetail from '../../../../../components/blog/Blogdetail';
 import React from 'react';
-
+import { redirect } from 'next/navigation';
 const page = async (context) => {
   const {blogId}=context.params;
   console.log(context.searchParams.pageno);
