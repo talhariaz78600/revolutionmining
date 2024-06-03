@@ -43,7 +43,7 @@ export default function RootLayout({ children }) {
         </Suspense>
         <Missdrop />
         {children}
-        <ToastContainer position="bottom-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+        <ToastContainer className="w-[380px]" position="bottom-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
         <Footer />
         <script src="https://kit.fontawesome.com/94794741f1.js" crossorigin="anonymous"></script>
       </body>

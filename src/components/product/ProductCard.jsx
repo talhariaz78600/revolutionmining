@@ -1,4 +1,5 @@
 import React from 'react';
+import Addtocart from '../button/Addtocart';
 import Image from 'next/image';
 const ProductCard = ({data}) => {
     return (
@@ -88,21 +89,7 @@ const ProductCard = ({data}) => {
                                                 <span className="product-form__error-message"></span>
                                             </div>
 
-                                            <div className="product-form__buttons">
-                                                <button type="submit" name="add"
-                                                    className="product-form__submit mt-4 button button--full-width button--secondary"
-                                                    disabled={item.status}>
-                                                    {item.status===false?<span>Buy & Host</span>:<span>Sold out</span>}
-                                                    <div className="loading-overlay__spinner hidden">
-                                                        <svg aria-hidden="true" focusable="false"
-                                                            role="presentation" className="spinner" viewBox="0 0 66 66"
-                                                            xmlns="http://www.w3.org/2000/svg">
-                                                            <circle className="path" fill="none" strokeWidth="6"
-                                                                cx="33" cy="33" r="30"></circle>
-                                                        </svg>
-                                                    </div>
-                                                </button>
-                                            </div>
+                                            <Addtocart item={item} />
                                         </product-form>
                                     </div>
 

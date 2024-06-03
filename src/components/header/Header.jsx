@@ -2,30 +2,39 @@
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { toast } from 'react-toastify';
+
 import { useSearchParams } from 'next/navigation'
 // import axios from 'axios';
 const Headernav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const data = usePathname()
   const searchParams = useSearchParams();
-  const [userData, setUserData] = useState(null);
+  // const [userData, setUserData] = useState(null);
+   const [cart, setCart] = useState(null);
+  // const savedCart = JSON.parse(localStorage.getItem('cart'))
+
+
+useEffect(() => {
+  const savedCart = JSON.parse(localStorage.getItem('cart'))
+  setCart(savedCart);
+}, [searchParams]);
+
 
   useEffect(() => {
-      const userdata = searchParams.get('userdata');
+    const userdata = searchParams.get('userdata');
     console.log(userdata);
-      if (userdata) {
-          try {
-              const parsedData = JSON.parse(decodeURIComponent(userdata));
-              setUserData(parsedData);
-              localStorage.setItem("userprofile", JSON.stringify({
-                firstname:parsedData.firstname,lastname:parsedData.lastname,email:parsedData.email
-                ,sessionExpiration:parsedData.sessionExpiration
-              }));
-          } catch (error) {
-              console.error('Error parsing user data:', error);
-          }
+    if (userdata) {
+      try {
+        const parsedData = JSON.parse(decodeURIComponent(userdata));
+        // setUserData(parsedData);
+        localStorage.setItem("userprofile", JSON.stringify({
+          firstname: parsedData.firstname, lastname: parsedData.lastname, email: parsedData.email
+          , sessionExpiration: parsedData.sessionExpiration
+        }));
+      } catch (error) {
+        console.error('Error parsing user data:', error);
       }
+    }
   }, [searchParams]);
 
   const [user, setUser] = useState(null);
@@ -46,9 +55,9 @@ const Headernav = () => {
   }, [data]);
 
   return (
-    
+
     <nav className={`${menuOpen ? "z-50 fixed h-screen" : ""} bg-black w-full shadow-lg `}>
-      <div className="w-full mpx-8 md:px-40 py-5">
+      <div className="w-full px-8 md:px-40 py-5">
         <div className="flex justify-between">
           <div className="flex items-center space-x-1">
             <Link href="/" className="header__heading-link link link--text focus-inset mx-8"><img srcSet="//www.revolutionmining.io/cdn/shop/files/Revolution_Mining_-_white_190x.png?v=1679084013 1x, //www.revolutionmining.io/cdn/shop/files/Revolution_Mining_-_white_190x@2x.png?v=1679084013 2x" src="//www.revolutionmining.io/cdn/shop/files/Revolution_Mining_-_white_190x.png?v=1679084013" loading="lazy" className="header__heading-logo" width="1005" height="191" alt="Revolution Mining" /></Link><nav className="header__inline-menu">
@@ -65,19 +74,31 @@ const Headernav = () => {
               </Link></li></ul>
             </nav>
           </div>
-          <div className='flex well-changing'>
-            <div className=''>
-              {<Link href="/authentication" className="px-8 py-2 button button--primary cursor-pointer" id="customer_login_link">{user ? "Hi " + user.firstname : "Login"}</Link>}
-              <Link href="/contact " className=" px-8 py-2  button button--secondary cursor-pointer">Contact us</Link>
+          <div className='flex'>
+            <div class="">
+              <Link href="/cart" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble"><svg class="icon icon-cart-empty" aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                <path fill="currentColor" d="M551.991 64H129.28l-8.329-44.423C118.822 8.226 108.911 0 97.362 0H12C5.373 0 0 5.373 0 12v8c0 6.627 5.373 12 12 12h78.72l69.927 372.946C150.305 416.314 144 431.42 144 448c0 35.346 28.654 64 64 64s64-28.654 64-64a63.681 63.681 0 0 0-8.583-32h145.167a63.681 63.681 0 0 0-8.583 32c0 35.346 28.654 64 64 64 35.346 0 64-28.654 64-64 0-17.993-7.435-34.24-19.388-45.868C506.022 391.891 496.76 384 485.328 384H189.28l-12-64h331.381c11.368 0 21.177-7.976 23.496-19.105l43.331-208C578.592 77.991 567.215 64 551.991 64zM240 448c0 17.645-14.355 32-32 32s-32-14.355-32-32 14.355-32 32-32 32 14.355 32 32zm224 32c-17.645 0-32-14.355-32-32s14.355-32 32-32 32 14.355 32 32-14.355 32-32 32zm38.156-192H171.28l-36-192h406.876l-40 192z"></path>
+              </svg><span class="visually-hidden">Cart</span>
+              <div class="cart-count-bubble"><span aria-hidden="true">{ cart?cart.length:""}</span><span class="visually-hidden">5 items</span>
+            </div>
+              </Link>
 
             </div>
-          </div>
+            <div className='flex well-changing'>
+              <div className=''>
+                {<Link href="/authentication" className="px-2 py-2 button button--primary cursor-pointer" id="customer_login_link">{user ? "Hi " + user.firstname : "Login"}</Link>}
+                <Link href="/contact " className=" px-2 py-2  button button--secondary cursor-pointer">Contact us</Link>
 
-          <div className="md:hidden flex items-center ">
+              </div>
+            </div>
+          <div className="lg:hidden flex items-center ">
             <button className="outline-none menu-button mx-2" onClick={() => setMenuOpen(!menuOpen)}>
               {menuOpen ? <i className="fa-solid fa-xmark text-5xl text-white"></i> : <i className="fa-solid fa-bars text-5xl text-white"></i>}
             </button>
           </div>
+          </div>
+
+
         </div>
       </div>
       {menuOpen && (
