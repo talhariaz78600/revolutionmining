@@ -10,7 +10,11 @@ const Addtocart = ({item}) => {
     const router=useRouter()
     const addToCart = () => {
         const savedCart = JSON.parse(localStorage.getItem('cart'));
-        const datapro=savedCart.find((product)=>product._id===item._id)
+        let datapro=null;
+        if(savedCart){
+            datapro=savedCart.find((product)=>product._id===item._id)
+        }
+       
         if(datapro){
             toast.success(<div className=''>
             <p>This product already added in your cart!</p>
