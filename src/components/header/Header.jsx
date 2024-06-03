@@ -16,6 +16,7 @@ const Headernav = () => {
 
 useEffect(() => {
   const savedCart = JSON.parse(localStorage.getItem('cart'))
+  console.log(savedCart)
   setCart(savedCart);
 }, [searchParams]);
 

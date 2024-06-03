@@ -1,44 +1,61 @@
 "use client"
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
-// import { useState } from 'react';
-import { toast } from 'react-toastify';
-const Addtocart = ({item}) => {
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-    const data = usePathname()
-    const router=useRouter()
-    const addToCart = () => {
-        const savedCart = JSON.parse(localStorage.getItem('cart'));
-        let datapro=null;
-        if(savedCart){
-            datapro=savedCart.find((product)=>product._id===item._id)
-        }
-       
-        if(datapro){
-            toast.success(<div className=''>
-            <p>This product already added in your cart!</p>
-            <button className='product-form__submit mt-4 button button--full-width button--secondary' onClick={()=>{
-                router.push('/cart')
-            }}>Go to Cart</button>
-        </div>)
-            // localStorage.setItem('cart', JSON.stringify([]));
-        }else{  
-            console.log(item)
-            const dat=[...savedCart];
-            dat.push(item);
-            localStorage.setItem('cart', JSON.stringify(dat));
-            router.push(`${data}?itemadd=${savedCart.length}`)
-            toast.success(
-                <div className=''>
-                    <p>Product added successfully to your cart!</p>
-                    <button className='product-form__submit mt-4 button button--full-width button--secondary' onClick={()=>{
-                        router.push('/cart')
-                    }}>Go to Cart</button>
-                </div>
-            );
-        }
-    };
+const Addtocart = ({ item }) => {
+  const data = usePathname();
+  const router = useRouter();
+  const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    // Initialize the cart in localStorage if it doesn't exist
+    const savedCart = JSON.parse(localStorage.getItem('cart')) || [];
+    console.log(savedCart);
+    setCart(savedCart);
+  }, []);
+
+  const addToCart = () => {
+    const savedCart = JSON.parse(localStorage.getItem('cart')) || [];
+    let datapro = savedCart.find((product) => product._id === item._id);
+
+    if (datapro) {
+      toast.success(
+        <div>
+          <p>This product is already in your cart!</p>
+          <button
+            className="product-form__submit mt-4 button button--full-width button--secondary"
+            onClick={() => {
+              router.push('/cart');
+            }}
+          >
+            Go to Cart
+          </button>
+        </div>
+      );
+    } else {
+      const newCart = [...savedCart, item];
+      localStorage.setItem('cart', JSON.stringify(newCart));
+      setCart(newCart);
+      toast.success(
+        <div>
+          <p>Product added successfully to your cart!</p>
+          <button
+            className="product-form__submit mt-4 button button--full-width button--secondary"
+            onClick={() => {
+              router.push('/cart');
+            }}
+          >
+            Go to Cart
+          </button>
+        </div>
+      );
+      router.push(`${data}?itemadd=${newCart.length}`);
+    }
+  };
+
     return (
         <div>
             <div className="product-form__buttons">
