@@ -24,8 +24,10 @@ const Addtocart = ({item}) => {
         </div>)
             // localStorage.setItem('cart', JSON.stringify([]));
         }else{  
-            savedCart.push(item);
-            localStorage.setItem('cart', JSON.stringify(savedCart));
+            console.log(item)
+            const dat=[...savedCart];
+            dat.push(item);
+            localStorage.setItem('cart', JSON.stringify(dat));
             router.push(`${data}?itemadd=${savedCart.length}`)
             toast.success(
                 <div className=''>
