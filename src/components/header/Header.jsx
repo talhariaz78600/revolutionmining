@@ -9,11 +9,8 @@ const Headernav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const data = usePathname()
   const searchParams = useSearchParams();
-  // const [userData, setUserData] = useState(null);
-   const [cart, setCart] = useState(null);
-  // const savedCart = JSON.parse(localStorage.getItem('cart'))
 
-
+const [cart, setCart] = useState(null);
 useEffect(() => {
   const savedCart = JSON.parse(localStorage.getItem('cart'))
   console.log(savedCart)
@@ -87,7 +84,7 @@ useEffect(() => {
             </div>
             <div className='flex well-changing'>
               <div className=''>
-                {<Link href="/authentication" className="px-2 py-2 button button--primary cursor-pointer" id="customer_login_link">{user ? "Hi " + user.firstname : "Login"}</Link>}
+                {<Link href="/authentication" className="px-2 py-2 button button--primary cursor-pointer" id="customer_login_link">{user ? "Hi ," + user.firstname : "Login"}</Link>}
                 <Link href="/contact " className=" px-2 py-2  button button--secondary cursor-pointer">Contact us</Link>
 
               </div>
@@ -120,7 +117,7 @@ useEffect(() => {
                 </Link></li></ul>
                 <div className="additional center">
 
-                  <Link href="/authentication" className="button button--primary cursor-pointer" id="customer_login_link">{user ? "Hi " + user.firstname : "Login"}</Link>
+                  <Link href="/authentication" className="button button--primary cursor-pointer" id="customer_login_link">{user ? "Hi," + user.firstname : "Login"}</Link>
 
                   <Link href="/contact" className="button button--secondary">Contact us</Link>
                 </div>
