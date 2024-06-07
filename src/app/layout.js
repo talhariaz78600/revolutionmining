@@ -46,6 +46,7 @@ export default function RootLayout({ children }) {
         <ToastContainer className="w-[380px]" position="bottom-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
         <Footer />
         <script src="https://kit.fontawesome.com/94794741f1.js" crossorigin="anonymous"></script>
+        <script src="https://www.paypal.com/sdk/js?client-id=ASBc1CfwUgwGrRf2YIXleQ8dJou3JaMh4hOR-lhCVh5LMlwi_mFGq5sXSEAo1S8AJT9TwSO1OZoU_j1i"></script>
       </body>
     </html>
   );

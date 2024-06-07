@@ -120,4 +120,19 @@ summary.list-menu__item {
   .well-changing{
     display: none;
   }
+  .paypal-button-container > div {
+    width: 100px; /* Set to the desired width */
+  }
+}
+
+
+.paypal-button-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 100vh; /* Full viewport height */
+}
+
+.paypal-button-container > div {
+  width: 400px; /* Set to the desired width */
 }
