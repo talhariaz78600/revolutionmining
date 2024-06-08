@@ -5,7 +5,10 @@ import Pay from '@/components/pay/Pay';
 
 
 const Page = () => {
-
+  const initialOptions = {
+    currency: "USD",
+    intent: "CAPTURE"
+  };
 
   const [user, setUser] = useState(null);
   useEffect(() => {
@@ -40,11 +43,11 @@ const Page = () => {
 
   const handleCreateOrder = async (data, actions) => {
     const orderData = {
-      intent: 'CAPTURE', 
+      intent: 'CAPTURE',
       purchase_units: [{
         amount: {
           currency_code: 'USD',
-          value: `${total}` 
+          value: `${total}`
         },
         description: 'Thanks for using our service'
       }]
@@ -60,7 +63,7 @@ const Page = () => {
 
 
 
-  const sendPaymentDetailsToAPI = async (paymentDetails) => {
+  const sendPaymentDetailsToAPI = (paymentDetails) => {
 
     console.log("Order successfully completed");
     // try {
@@ -71,7 +74,7 @@ const Page = () => {
     //     },
     //     body: JSON.stringify(paymentDetails),
     //   });
-  
+
     //   const data = await response.json();
     //   if (response.ok) {
     //     console.log('Payment details saved successfully:', data);
@@ -94,7 +97,7 @@ const Page = () => {
               try {
                 const details = await actions.order.capture(); // Capture the payment
                 console.log('Payment details:', details);
-                if(details){
+                if (details) {
                   await sendPaymentDetailsToAPI(details); // Send details to your API
                   console.log('Payment successful');
                 }
@@ -102,7 +105,7 @@ const Page = () => {
                 console.error('Payment failed:', error);
               }
             }}
-          />
+            />
           </div>
         </PayPalScriptProvider>
 
