@@ -27,7 +27,8 @@ useEffect(() => {
         // setUserData(parsedData);
         localStorage.setItem("userprofile", JSON.stringify({
           firstname: parsedData.firstname, lastname: parsedData.lastname, email: parsedData.email
-          , sessionExpiration: parsedData.sessionExpiration
+          , sessionExpiration: parsedData.sessionExpiration,
+          id:parsedData.id
         }));
       } catch (error) {
         console.error('Error parsing user data:', error);
@@ -59,7 +60,7 @@ useEffect(() => {
         <div className="flex justify-between">
           <div className="flex items-center space-x-1">
             <Link href="/" className="header__heading-link link link--text focus-inset mx-8"><img srcSet="//www.revolutionmining.io/cdn/shop/files/Revolution_Mining_-_white_190x.png?v=1679084013 1x, //www.revolutionmining.io/cdn/shop/files/Revolution_Mining_-_white_190x@2x.png?v=1679084013 2x" src="//www.revolutionmining.io/cdn/shop/files/Revolution_Mining_-_white_190x.png?v=1679084013" loading="lazy" className="header__heading-logo" width="1005" height="191" alt="Revolution Mining" /></Link><nav className="header__inline-menu">
-              <ul className="list-menu list-menu--inline" role="list"><li><Link href="/collections/asics" className="header__menu-item header__menu-item list-menu__item link link--text focus-inset" aria-current="page">
+           {data!="/payment" ?<ul className="list-menu list-menu--inline" role="list"><li><Link href="/collections/asics" className="header__menu-item header__menu-item list-menu__item link link--text focus-inset" aria-current="page">
                 <span className={`${data === "/collections/asics" ? "header__active-menu-item" : ""}`}>Equipment</span>
               </Link></li><li><Link href="/pages/hosting" className="header__menu-item header__menu-item list-menu__item link link--text focus-inset">
                 <span className={`${data === "/pages/hosting" ? "header__active-menu-item" : ""}`}>Hosting</span>
@@ -69,10 +70,10 @@ useEffect(() => {
                 <span className={`${data === "/blogs/the-revolution-blog/1" ? "header__active-menu-item" : ""}`}>Blog</span>
               </Link></li><li><Link href="/company" className="header__menu-item header__menu-item list-menu__item link link--text focus-inset">
                 <span className={`${data === "/company" ? "header__active-menu-item" : ""}`}>Company</span>
-              </Link></li></ul>
+              </Link></li></ul>:""}
             </nav>
           </div>
-          <div className='flex'>
+          {data!="/payment"?<div className='flex'>
             <div class="">
               <Link href="/cart" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble"><svg class="icon icon-cart-empty" aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                 <path fill="currentColor" d="M551.991 64H129.28l-8.329-44.423C118.822 8.226 108.911 0 97.362 0H12C5.373 0 0 5.373 0 12v8c0 6.627 5.373 12 12 12h78.72l69.927 372.946C150.305 416.314 144 431.42 144 448c0 35.346 28.654 64 64 64s64-28.654 64-64a63.681 63.681 0 0 0-8.583-32h145.167a63.681 63.681 0 0 0-8.583 32c0 35.346 28.654 64 64 64 35.346 0 64-28.654 64-64 0-17.993-7.435-34.24-19.388-45.868C506.022 391.891 496.76 384 485.328 384H189.28l-12-64h331.381c11.368 0 21.177-7.976 23.496-19.105l43.331-208C578.592 77.991 567.215 64 551.991 64zM240 448c0 17.645-14.355 32-32 32s-32-14.355-32-32 14.355-32 32-32 32 14.355 32 32zm224 32c-17.645 0-32-14.355-32-32s14.355-32 32-32 32 14.355 32 32-14.355 32-32 32zm38.156-192H171.28l-36-192h406.876l-40 192z"></path>
@@ -94,7 +95,7 @@ useEffect(() => {
               {menuOpen ? <i className="fa-solid fa-xmark text-5xl text-white"></i> : <i className="fa-solid fa-bars text-5xl text-white"></i>}
             </button>
           </div>
-          </div>
+          </div>:<Link href="/collections/asics"><i className="fa-solid fa-bag-shopping text-3xl mt-2 text-white"></i></Link>}
 
 
         </div>

@@ -228,7 +228,9 @@ const CartProducts = () => {
                                     <div className="buttons-wrapper">
 
                                         <div className="cart__ctas">
-                                            <button type="button" id="btn_place_order" className="cart__checkout-button button--order button" name="checkout" form="cart" value="Place Order">Place Order</button>
+                                            <button type="button" id="btn_place_order" className="cart__checkout-button button--order button" onClick={()=>{
+                                                router.push("/payment")
+                                            }} name="checkout" form="cart" value="Place Order">Place Order</button>
                                         </div>
                                     </div>
 

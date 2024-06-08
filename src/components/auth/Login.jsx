@@ -26,7 +26,8 @@ const Login = () => {
           toast.success(response.data.message);
           localStorage.setItem("userprofile", JSON.stringify({
             firstname: response.data.user.firstname, lastname: response.data.user.lastname, email: response.data.user.email
-            , sessionExpiration: response.data.user.sessionExpiration
+            , sessionExpiration: response.data.user.sessionExpiration,
+            id:response.data.user._id
           }));
           localStorage.setItem("login", false)
           router.push("/")

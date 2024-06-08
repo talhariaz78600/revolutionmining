@@ -121,7 +121,7 @@ summary.list-menu__item {
     display: none;
   }
   .paypal-button-container > div {
-    width: 100px; /* Set to the desired width */
+    width: 300px; 
   }
 }
 
@@ -130,7 +130,8 @@ summary.list-menu__item {
   display: flex;
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
-  height: 100vh; /* Full viewport height */
+  width: 100%;
+
 }
 
 .paypal-button-container > div {

@@ -25,7 +25,8 @@ const Signup = () => {
           toast.success(response.data.message);
           localStorage.setItem("userprofile", JSON.stringify({
             firstname:response.data.newuser.firstname,lastname:response.data.newuser.lastname,email:response.data.newuser.email
-            ,sessionExpiration:response.data.newuser.sessionExpiration
+            ,sessionExpiration:response.data.newuser.sessionExpiration,
+            id:response.data.newuser._id
           }));
           localStorage.setItem("login",false)
           router.push("/")
