@@ -27,7 +27,7 @@ const Login = () => {
           localStorage.setItem("userprofile", JSON.stringify({
             firstname: response.data.user.firstname, lastname: response.data.user.lastname, email: response.data.user.email
             , sessionExpiration: response.data.user.sessionExpiration,
-            id:response.data.user._id
+            id: response.data.user._id
           }));
           localStorage.setItem("login", false)
           router.push("/")
@@ -64,7 +64,7 @@ const Login = () => {
             <Link href="/authentication/verification">
               Forgot your password?
             </Link><button type='submit'>
-            {loader ? <div
+              {loader ? <div
                 className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-secondary motion-reduce:animate-[spin_1.5s_linear_infinite]"
                 role="status">
                 <span
