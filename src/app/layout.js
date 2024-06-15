@@ -23,6 +23,7 @@ import "../assets/css/component-price.css"
 import "../assets/css/component-search.css"
 import "../assets/css/component-rte.css"
 import "../assets/css/custom.css"
+import '../assets/css/customer-dashboard.css'
 import "../assets/css/component-card.css"
 import Headernav from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
