@@ -31,6 +31,9 @@ const Signup = () => {
           localStorage.setItem("login",false)
           router.push("/")
         }
+        else if(response.status === 400){
+          toast.success(response.data.message);
+        }
       }
     } catch (error) {
       toast.error(error.message);
