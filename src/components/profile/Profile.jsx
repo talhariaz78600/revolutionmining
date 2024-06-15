@@ -2,8 +2,10 @@
 import React,{useEffect} from 'react'
 import '../../assets/css/customer-dashboard.css'
 import Link from 'next/link';
-
+// import {Link} from 'next/navigation'
+import { useRouter } from 'next/navigation';
 const Profile = () => {
+  const router=useRouter();
     useEffect(() => {
         const handleToggle = (event) => {
           const element = event.target.closest('.order-number');
@@ -121,7 +123,7 @@ const Profile = () => {
                 Invoices
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link href="/account?view=miningpool">
                 <svg
                   id="Raggruppa_1385"
@@ -170,7 +172,7 @@ const Profile = () => {
                 </svg>
                 Mining Pool
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link href="/account?view=edit">
                 <svg
@@ -193,7 +195,7 @@ const Profile = () => {
               </Link>
             </li>
             <li>
-              <Link href="/account?view=contact">
+              <Link href="/contact">
                 <svg
                   id="Raggruppa_1386"
                   data-name="Raggruppa 1386"
@@ -312,7 +314,10 @@ const Profile = () => {
               </Link>
             </li>
             <li>
-              <Link href="/account/logout">
+              <span className='mx-5 flex cursor-pointer' onClick={()=>{localStorage.removeItem('userprofile')
+              // localStorage.removeItem("userdata")
+              router.push('/authentication')
+              }}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   aria-hidden="true"
@@ -330,7 +335,7 @@ const Profile = () => {
                   />
                 </svg>
                 Log out
-              </Link>
+              </span>
             </li>
           </ul>
         </nav>

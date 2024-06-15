@@ -1,6 +1,5 @@
-import Profile from "@/components/home/Profile";
+import Profile from "@/components/profile/Profile"
 import React from "react";
-
 const profile = () => {
   return (
     <div>

@@ -27,14 +27,14 @@ useEffect(() => {
         // setUserData(parsedData);
         localStorage.setItem("userprofile", JSON.stringify({
           firstname: parsedData.firstname, lastname: parsedData.lastname, email: parsedData.email
-          , sessionExpiration: parsedData.sessionExpiration,
+          ,sessionExpiration: parsedData.sessionExpiration,
           id:parsedData.id
         }));
       } catch (error) {
         console.error('Error parsing user data:', error);
       }
     }
-  }, [searchParams]);
+  }, [searchParams,data]);
 
   const [user, setUser] = useState(null);
   useEffect(() => {
@@ -45,9 +45,11 @@ useEffect(() => {
         setUser(data);
       }else{
         localStorage.removeItem('userprofile')
+        setUser(null);
+        // localStorage.removeItem("userdata")
       }
     }
-  }, [searchParams]);
+  }, [searchParams,data]);
 
 
 
@@ -88,7 +90,7 @@ useEffect(() => {
             </div>
             <div className='flex well-changing'>
               <div className=''>
-                {<Link href="/authentication" className="px-2 py-2 button button--primary cursor-pointer" id="customer_login_link">{user ? "Hi ," + user.firstname : "Login"}</Link>}
+                {<Link href={`${user?"/profile":"/authentication"}`} className="px-2 py-2 button button--primary cursor-pointer" id="customer_login_link">{user ? "Hi ," + user.firstname : "Login"}</Link>}
                 <Link href="/contact " className=" px-2 py-2  button button--secondary cursor-pointer">Contact us</Link>
 
               </div>
@@ -121,7 +123,7 @@ useEffect(() => {
                 </Link></li></ul>
                 <div className="additional center">
 
-                  <Link href="/authentication" className="button button--primary cursor-pointer" id="customer_login_link">{user ? "Hi," + user.firstname : "Login"}</Link>
+                  <Link href={`${user?"/profile":"/authentication"}`} className="button button--primary cursor-pointer" id="customer_login_link">{user ? "Hi," + user.firstname : "Login"}</Link>
 
                   <Link href="/contact" className="button button--secondary">Contact us</Link>
                 </div>
