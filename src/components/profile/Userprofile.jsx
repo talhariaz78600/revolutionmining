@@ -1,19 +1,76 @@
+"use client"
 import React from 'react';
-
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 const Userprofile = () => {
+    const [user, setUser] = useState(null);
+    const [loader, setLoader] = useState(false);
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const userProfile = localStorage.getItem('userprofile');
+            const data = JSON.parse(userProfile)
+            console.log(data);
+            if (data && data.sessionExpiration > new Date()) {
+                setUser(data);
+            } else {
+                localStorage.removeItem('userprofile')
+                setUser(null);
+                // localStorage.removeItem("userdata")
+            }
+        }
+    }, []);
+
+    const onchang = (e) => {
+        setUser({ ...user, [e.target.name]: e.target.value })
+    }
+
+    const submit = async (e) => {
+        e.preventDefault();
+        setLoader(true);
+        console.log("userdata updated successfully", user)
+        try {
+            const response = await axios.post(`https://revolutionbackend.vercel.app/api/users/${user.id}/update-profile`, user);
+            if (response.status === 200) {
+                toast.success(response.data.message);
+                localStorage.setItem("userprofile", JSON.stringify({
+                    firstname: response.data.currentUser.firstname, lastname: response.data.currentUser.lastname, email: response.data.currentUser.email
+                    , sessionExpiration: response.data.currentUser.sessionExpiration,
+                    id: response.data.currentUser._id,
+                    mobileNumber: response.data.currentUser.mobileNumber ? response.data.currentUser.mobileNumber : ""
+                }));
+                setUser(response.data.currentUser);
+                setLoader(false);
+            }
+            else {
+                toast.success(response.data.message);
+                setLoader(false);
+            }
+
+        } catch (error) {
+            toast.error(error.message);
+            console.log(error);
+            setLoader(false);
+        }
+
+    }
+
     return (
         <div>
-            <div className="flex items-center w-full justify-center" style={{ backgroundColor: "#ffffff1a" }}>
-                <form className=" rounded-lg shadow-lg py-20 w-full md:px-20">
+            {user ? <div className="flex items-center w-full justify-center" style={{ backgroundColor: "#ffffff1a" }}>
+                <form onSubmit={submit} className=" rounded-lg shadow-lg py-20 w-full md:px-20">
                     <div className="mb-4">
                         <label className="block text-white text-sm font-bold mb-2" htmlFor="first-name">
                             First name
                         </label>
                         <input
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            id="first-name"
+                            id="firstname"
                             type="text"
+                            name='firstname'
                             placeholder="First name"
+                            value={user.firstname}
+                            onChange={onchang}
                         />
                     </div>
                     <div className="mb-4">
@@ -22,9 +79,12 @@ const Userprofile = () => {
                         </label>
                         <input
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            id="last-name"
+                            id="lastname"
                             type="text"
                             placeholder="Last name"
+                            name='lastname'
+                            onChange={onchang}
+                            value={user.lastname}
                         />
                     </div>
                     <div className="mb-4">
@@ -35,7 +95,10 @@ const Userprofile = () => {
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             id="email"
                             type="email"
+                            name='email'
                             placeholder="Email address"
+                            onChange={onchang}
+                            value={user.email}
                         />
                     </div>
                     <div className="mb-4">
@@ -47,12 +110,15 @@ const Userprofile = () => {
                             id="phone-number"
                             type="tel"
                             placeholder="Phone number"
+                            value={user.mobileNumber}
+                            onChange={onchang}
+                            name='mobileNumber'
                         />
                     </div>
                     <div className="flex items-center justify-between">
                         <button
                             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2  px-2 md:px-4 rounded focus:outline-none focus:shadow-outline"
-                            type="button"
+                            type="submit"
                         >
                             Update account
                         </button>
@@ -64,7 +130,7 @@ const Userprofile = () => {
                         </button>
                     </div>
                 </form>
-            </div>
+            </div> : ""}
         </div>
     );
 }

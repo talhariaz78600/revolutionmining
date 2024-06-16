@@ -26,7 +26,8 @@ const Signup = () => {
           localStorage.setItem("userprofile", JSON.stringify({
             firstname:response.data.newuser.firstname,lastname:response.data.newuser.lastname,email:response.data.newuser.email
             ,sessionExpiration:response.data.newuser.sessionExpiration,
-            id:response.data.newuser._id
+            id:response.data.newuser._id,
+            mobileNumber:response.data.newuser.mobileNumber?response.data.newuser.mobileNumber:""
           }));
           localStorage.setItem("login",false)
           router.push("/")

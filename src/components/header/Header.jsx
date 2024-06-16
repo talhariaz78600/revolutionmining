@@ -28,7 +28,8 @@ useEffect(() => {
         localStorage.setItem("userprofile", JSON.stringify({
           firstname: parsedData.firstname, lastname: parsedData.lastname, email: parsedData.email
           ,sessionExpiration: parsedData.sessionExpiration,
-          id:parsedData.id
+          id:parsedData.id,
+          mobileNumber:parsedData.mobileNumber?parsedData.mobileNumber:""
         }));
       } catch (error) {
         console.error('Error parsing user data:', error);
@@ -37,7 +38,7 @@ useEffect(() => {
   }, [searchParams,data]);
 
   const [user, setUser] = useState(null);
-  console.log(user);
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const userProfile = localStorage.getItem('userprofile');

@@ -56,7 +56,7 @@ const Orderstatus = () => {
                             </td>
                         </tr></tbody>
                 </table>
-                <div class="order-history"><div class="single-order">
+                <div class="order-history lg:hidden"><div class="single-order">
                     <div class="">Work Numbers: #1473</div><div class="" >
                         <div class="order-progress">
                             <div class="step active">Pending</div>
