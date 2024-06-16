@@ -2,14 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import Pay from '@/components/pay/Pay';
-
-
+import axios from 'axios';
 const Page = () => {
-  const initialOptions = {
-    currency: "USD",
-    intent: "CAPTURE"
-  };
-
   const [user, setUser] = useState(null);
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -19,22 +13,17 @@ const Page = () => {
       }
     }
   }, []);
-  useEffect(() => {
-    console.log("PayPalScriptProvider options:", initialOptions);
-  }, []);
-
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem('cart'))
     setCart(savedCart);
 
-    console.log(savedCart)
+    console.log(wash)
     if (savedCart) {
       const newTotal = savedCart.reduce((acc, item) => {
         return acc + item.price + item.hostingfee + 15 + 25 + 475;
       }, 0);
-
       setTotal(newTotal);
     }
   }, []);
@@ -60,30 +49,30 @@ const Page = () => {
       return undefined;
     });
   };
-
-
-
-  const sendPaymentDetailsToAPI = (paymentDetails) => {
+  const sendPaymentDetailsToAPI = async (paymentDetails) => {
 
     console.log("Order successfully completed");
-    // try {
-    //   const response = await fetch('/api/order/productorder', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(paymentDetails),
-    //   });
+    const data = paymentDetails;
 
-    //   const data = await response.json();
-    //   if (response.ok) {
-    //     console.log('Payment details saved successfully:', data);
-    //   } else {
-    //     console.error('Error saving payment details:', data);
-    //   }
-    // } catch (error) {
-    //   console.error('Error in sending payment details to API:', error);
-    // }
+    const wash = cart.map((item) => {
+      return { productId: item._id, orderId: data.id, orderStatus: data.status, productprice: total }
+    })
+    try {
+      const response = await axios.post('https://revolutionbackend.vercel.app/api/order/productorder', {
+        userId: user.id,
+        product: wash,
+        price: total,
+        noofitems: wash.length,
+        title: wash[0].title
+      });
+      if (response.status === 200) {
+        console.log('Payment details saved successfully:', data);
+      } else {
+        console.error('Error saving payment details:', data);
+      }
+    } catch (error) {
+      console.error('Error in sending payment details to API:', error);
+    }
   };
 
   return (

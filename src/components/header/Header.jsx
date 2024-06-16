@@ -37,10 +37,12 @@ useEffect(() => {
   }, [searchParams,data]);
 
   const [user, setUser] = useState(null);
+  console.log(user);
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const userProfile = localStorage.getItem('userprofile');
       const data=JSON.parse(userProfile)
+      // console.log(data);
       if (data && data.sessionExpiration > new Date()) {
         setUser(data);
       }else{
