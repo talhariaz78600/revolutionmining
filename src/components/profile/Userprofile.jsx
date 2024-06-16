@@ -2,10 +2,12 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 const Userprofile = () => {
     const [user, setUser] = useState(null);
     const [loader, setLoader] = useState(false);
+    const router=useRouter();
     useEffect(() => {
         if (typeof window !== 'undefined') {
             const userProfile = localStorage.getItem('userprofile');
@@ -29,6 +31,7 @@ const Userprofile = () => {
         e.preventDefault();
         setLoader(true);
         console.log("userdata updated successfully", user)
+        console.log(user.id);
         try {
             const response = await axios.post(`https://revolutionbackend.vercel.app/api/users/${user.id}/update-profile`, user);
             if (response.status === 200) {
@@ -39,7 +42,7 @@ const Userprofile = () => {
                     id: response.data.currentUser._id,
                     mobileNumber: response.data.currentUser.mobileNumber ? response.data.currentUser.mobileNumber : ""
                 }));
-                setUser(response.data.currentUser);
+                setUser({firstname:response.data.currentUser.firstname,lastname:response.data.currentUser.lastname,email:response.data.currentUser.email,sessionExpiration:response.data.currentUser.sessionExpiration,mobileNumber:response.data.currentUser.mobileNumber,id:response.data.currentUser._id});
                 setLoader(false);
             }
             else {
@@ -120,11 +123,21 @@ const Userprofile = () => {
                             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2  px-2 md:px-4 rounded focus:outline-none focus:shadow-outline"
                             type="submit"
                         >
-                            Update account
+                                         {loader ? <div
+                className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-secondary motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                role="status">
+                <span
+                  className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+                >Loading...</span
+                >
+              </div> : "Update account"}
                         </button>
                         <button
                             className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                             type="button"
+                            onClick={()=>{
+                                router.push("/")
+                            }}
                         >
                             Cancel
                         </button>
