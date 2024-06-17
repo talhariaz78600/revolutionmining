@@ -13,14 +13,14 @@ const Headernav = () => {
 const [cart, setCart] = useState(null);
 useEffect(() => {
   const savedCart = JSON.parse(localStorage.getItem('cart'))
-  console.log(savedCart)
+  // console.log(savedCart)
   setCart(savedCart);
 }, [searchParams]);
 
 
   useEffect(() => {
     const userdata = searchParams.get('userdata');
-    console.log(userdata);
+    // console.log(userdata);
     if (userdata) {
       try {
         const parsedData = JSON.parse(decodeURIComponent(userdata));

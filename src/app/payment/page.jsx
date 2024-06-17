@@ -19,7 +19,7 @@ const Page = () => {
     const savedCart = JSON.parse(localStorage.getItem('cart'))
     setCart(savedCart);
 
-    console.log(wash)
+    // console.log(wash)
     if (savedCart) {
       const newTotal = savedCart.reduce((acc, item) => {
         return acc + item.price + item.hostingfee + 15 + 25 + 475;
