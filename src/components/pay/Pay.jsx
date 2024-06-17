@@ -4,7 +4,7 @@ const Pay = ({cart,total}) => {
         <div class="">
             <div class="flex items-start flex-col gap-6 xl:flex-row ">
                 <div class="w-full  flex items-start flex-col justify-center">
-                    <div class="border border-gray-200 rounded-3xl  w-[320px] md:w-[700px] lg:w-[500px]  mt-10 md:mt-40 group transition-all duration-500 hover:border-gray-400 ">
+                    <div class="border border-gray-200 rounded-3xl  w-[320px] md:w-[700px] lg:w-[500px]  mt-6 md:mt-40 group transition-all duration-500 hover:border-gray-400 ">
                         <h2
                             class="font-manrope font-bold text-3xl leading-10 my-4 text-white mx-4 border-b border-gray-200 ">
                             Order Summary

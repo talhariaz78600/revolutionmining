@@ -19,7 +19,7 @@ const Page = () => {
     const savedCart = JSON.parse(localStorage.getItem('cart'))
     setCart(savedCart);
 
-    // console.log(wash)
+  
     if (savedCart) {
       const newTotal = savedCart.reduce((acc, item) => {
         return acc + item.price + item.hostingfee + 15 + 25 + 475;
@@ -54,16 +54,16 @@ const Page = () => {
     console.log("Order successfully completed");
     const data = paymentDetails;
 
-    const wash = cart.map((item) => {
+    try {
+    let wash = cart.map((item) => {
       return { productId: item._id, orderId: data.id, orderStatus: data.status, productprice: total }
     })
-    try {
       const response = await axios.post('https://revolutionbackend.vercel.app/api/order/productorder', {
         userId: user.id,
-        product: wash,
+        product: wash?wash:"",
         price: total,
-        noofitems: wash.length,
-        title: wash[0].title
+        noofitems: wash?wash.length:"",
+        title: wash?wash[0].title:""
       });
       if (response.status === 200) {
         console.log('Payment details saved successfully:', data);
