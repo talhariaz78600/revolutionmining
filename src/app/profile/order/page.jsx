@@ -1,6 +1,8 @@
+
 import React from 'react';
 import Orderstatus from '@/components/profile/Orderstatus';
-const page = () => {
+const page = async() => {
+
   return (
     <div>
       <Orderstatus/>

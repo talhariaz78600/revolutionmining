@@ -56,14 +56,14 @@ const Page = () => {
 
     try {
     let wash = cart.map((item) => {
-      return { productId: item._id, orderId: data.id, orderStatus: data.status, productprice: total }
+      return { productId: item._id, orderId: data.id, orderStatus: data.status, productprice: item.price,title:item.title, hostingfee:item.hostingfee,power:item.power,machines:item.machines}
     })
       const response = await axios.post('https://revolutionbackend.vercel.app/api/order/productorder', {
         userId: user.id,
         product: wash?wash:"",
         price: total,
         noofitems: wash?wash.length:"",
-        title: wash?wash[0].title:""
+        status:data.status==="completed"?true:false
       });
       if (response.status === 200) {
         console.log('Payment details saved successfully:', data);
