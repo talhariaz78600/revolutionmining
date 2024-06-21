@@ -5,9 +5,9 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 const Userprofile = () => {
-    const [user, setUser] = useState(null);
     const [loader, setLoader] = useState(false);
     const router=useRouter();
+    const [user, setUser] = useState(null);
     useEffect(() => {
         if (typeof window !== 'undefined') {
             const userProfile = localStorage.getItem('userprofile');

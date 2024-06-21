@@ -102,7 +102,6 @@ const Page = () => {
 
       <div className='col-span-1 mx-10'>
         <Pay cart={cart.length} total={total} />
-
       </div>
     </div>
 
