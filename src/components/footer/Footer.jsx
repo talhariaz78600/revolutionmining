@@ -1,6 +1,40 @@
+"use client"
 import React from 'react';
 import Link from 'next/link';
+import { useState,useEffect } from 'react';
+import axios from 'axios';
 const Footer = () => {
+    const [twitterUrl, setTwitterUrl] = useState('');
+  const [facebookUrl, setFacebookUrl] = useState('');
+  const [instagramUrl, setInstagramUrl] = useState('');
+  const [telegramUrl, setTelegramUrl] = useState('');
+  const fetchdata=async()=>{
+    try {
+        const response = await axios.get(`https://revolutionbackend.vercel.app/api/media/getsinglemedia/6675a719b8c9d030b95645ec`);
+        if (response && response.status === 200) {
+          console.log("success" , response)
+          setTwitterUrl(response.data.data.twitterUrl)
+          setFacebookUrl(response.data.data.facebookUrl)
+          setInstagramUrl(response.data.data.instagramUrl)
+          
+          setTelegramUrl(response.data.data.telegramUrl)
+        }
+      } catch (error) {
+        
+        if (error.response) {
+          console.log(error);
+          setError(error.response.message)
+      
+        } else {
+          console.log("Failed to login: Invalid credentials");
+  
+        }
+      }
+  }
+
+  useEffect(()=>{
+    fetchdata();
+  },[])
     return (
         <div>
             <div id="shopify-section-footer" className="shopify-section">
@@ -68,7 +102,7 @@ const Footer = () => {
                             <div className="footer-block grid__item">
                                 <ul className="footer__list-social list-unstyled list-social" role="list">
                                     <li className="list-social__item">
-                                        <Link rel="nofollow" href="https://twitter.com/RevolMining"
+                                        <Link rel="nofollow" href={twitterUrl}
                                             className="link list-social__link"><svg aria-hidden="true" focusable="false"
                                                 role="presentation" className="icon icon-twitter" viewBox="0 0 18 15">
                                                 <path fill="currentColor"
@@ -78,7 +112,7 @@ const Footer = () => {
                                         </Link>
                                     </li>
                                     <li className="list-social__item">
-                                        <Link rel="nofollow" href="https://www.facebook.com/RevolMining"
+                                        <Link rel="nofollow" href={facebookUrl}
                                             className="link list-social__link"><svg aria-hidden="true" focusable="false"
                                                 role="presentation" className="icon icon-facebook" viewBox="0 0 18 18">
                                                 <path fill="currentColor"
@@ -88,7 +122,7 @@ const Footer = () => {
                                         </Link>
                                     </li>
                                     <li className="list-social__item">
-                                        <Link rel="nofollow" href="https://www.instagram.com/revolutionmining"
+                                        <Link rel="nofollow" href={instagramUrl}
                                             className="link list-social__link"><svg aria-hidden="true" focusable="false"
                                                 role="presentation" className="icon icon-instagram" viewBox="0 0 18 18">
                                                 <path fill="currentColor"
@@ -100,7 +134,7 @@ const Footer = () => {
                                         </Link>
                                     </li>
                                     <li className="list-social__item">
-                                        <Link rel="nofollow" href="https://t.me/revolution_mining_official"
+                                        <Link rel="nofollow" href={telegramUrl}
                                             className="link list-social__link"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                 aria-hidden="true" focusable="false" role="presentation" className="icon icon-arrow"
                                                 viewBox="0 0 12.537 10.562">
