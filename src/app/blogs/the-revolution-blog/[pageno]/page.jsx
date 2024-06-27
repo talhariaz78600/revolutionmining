@@ -8,7 +8,7 @@ const page = async (context) => {
 
   const blogdata = async () => {
   
-      const response = await fetch(`https://revolutionbackend.vercel.app/api/blog/getblogdata?page=${pageno}&limit=${6}`, {
+      const response = await fetch(`https://revolutionbackend.vercel.app/api/blog/getblogdata?page=${pageno}&limit=${5}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json"

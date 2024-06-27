@@ -44,7 +44,7 @@ const Blog = ({ title, data, pageno }) => {
                                 </li></ul>
                             </nav> */}
 
-                           {data.search==="no" && <FooterPagination stoped={data.total} pagelength={4} pageno={pageno} pagename={title} />}
+                           {data.search==="no" && <FooterPagination stoped={data.total} pagelength={5} pageno={pageno} pagename={title} />}
                         </div></div>
                 </section>
 
