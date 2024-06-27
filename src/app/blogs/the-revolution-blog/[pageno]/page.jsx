@@ -23,8 +23,6 @@ const page = async (context) => {
 
         return { data: res.finddata, total: res.stop,search:"no"};
       }
-
-
   }
   const data = await blogdata();
 

@@ -4,26 +4,24 @@ import "../../assets/css/customer.css"
 import Link from 'next/link';
 import { toast } from 'react-toastify';
 import axios from 'axios';
-import {  useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 const Verificationemail = () => {
   const router = useRouter();
   const [loader, setLoader] = useState(false);
-  const [data, setData] = useState({ email: ''})
+  const [data, setData] = useState({ email: '' })
   const sendmail = async (e) => {
     e.preventDefault();
     console.log(data);
     try {
-
       if (data.email !== "") {
         setLoader(true);
-
         const response = await axios.post(`https://revolutionbackend.vercel.app/api/auth/verification`, data)
         console.log(response);
         if (response.status === 200) {
           setLoader(false)
           router.push("/authentication")
-          setData({email:""})
+          setData({ email: "" })
           toast.success("We have send email to you for reset password");
         }
       }
@@ -54,21 +52,22 @@ const Verificationemail = () => {
                   Email
                 </label>
               </div><button>
-              {loader ? <div
-                className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-secondary motion-reduce:animate-[spin_1.5s_linear_infinite]"
-                role="status">
-                <span
-                  className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
-                >Loading...</span
-                >
-              </div> : "Submit"}
+                {loader ? <div
+                  className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-secondary motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                  role="status">
+                  <span
+                    className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+                  >Loading...</span
+                  >
+                </div> : "Submit"}
               </button>
 
               <Link href="/authentication">
                 Cancel
-              </Link></form>
-              </div>
-            </div>
+              </Link>
+            </form>
+          </div>
+        </div>
 
       </main>
     </div>

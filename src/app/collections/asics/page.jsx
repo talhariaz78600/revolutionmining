@@ -16,15 +16,12 @@ const page = async() => {
           redirect(`/not-found`)
         }
         else {
-  
           return  data
         }
   
   
     }
-
     const product= await productdata()
-  
     const data={
         title:"Bitcoin Mining Equipment",
         description:"We offer the latest cryptocurrency mining ASICS for mining Bitcoin and altcoins. Contact us and we'll help you find the right crypto miner for you.",

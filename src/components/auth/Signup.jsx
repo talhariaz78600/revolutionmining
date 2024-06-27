@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 const Signup = () => {
-  const router=useRouter();
+  const router = useRouter();
   const [loader, setLoader] = useState(false);
   const [data, setData] = useState({ firstname: "", lastname: "", email: '', password: "" })
   const signup = async (e) => {
@@ -16,7 +16,6 @@ const Signup = () => {
 
       if (data.firstname !== "" || data.lastname !== "" || data.email !== "" || data.password !== "") {
         setLoader(true);
-
         const response = await axios.post(`https://revolutionbackend.vercel.app/api/auth/sing-up`, data)
         console.log(response);
         if (response.status === 200) {
@@ -24,33 +23,30 @@ const Signup = () => {
           setData({ firstname: "", lastname: "", email: '', password: "" });
           toast.success(response.data.message);
           localStorage.setItem("userprofile", JSON.stringify({
-            firstname:response.data.newuser.firstname,lastname:response.data.newuser.lastname,email:response.data.newuser.email
-            ,sessionExpiration:response.data.newuser.sessionExpiration,
-            id:response.data.newuser._id,
-            mobileNumber:response.data.newuser.mobileNumber?response.data.newuser.mobileNumber:""
+            firstname: response.data.newuser.firstname, lastname: response.data.newuser.lastname, email: response.data.newuser.email
+            , sessionExpiration: response.data.newuser.sessionExpiration,
+            id: response.data.newuser._id,
+            mobileNumber: response.data.newuser.mobileNumber ? response.data.newuser.mobileNumber : ""
           }));
-          localStorage.setItem("login",false)
-          router.push("/")
+          localStorage.setItem("login", false)
+          router.push("/profile")
         }
-        else if(response.status === 400){
+        else if (response.status === 400) {
           toast.success(response.data.message);
         }
       }
     } catch (error) {
       toast.error(error.message);
       setLoader(false)
-   
     }
-
-
   }
 
   const onchang = (e) => {
     setData({ ...data, [e.target.name]: e.target.value })
   }
-  const loginwithgoogle=async()=>{
+  const loginwithgoogle = async () => {
     router.push(`https://revolutionbackend.vercel.app/auth/google/callback`)
-    localStorage.setItem("login",true)
+    localStorage.setItem("login", true)
   }
 
 
@@ -104,7 +100,7 @@ const Signup = () => {
                 >
               </div> : "Create"}
             </button>
-                    
+
 
           </form>
           <span className='text-center text-white'>OR</span>

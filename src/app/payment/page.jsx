@@ -22,14 +22,11 @@ const Page = () => {
   
     if (savedCart) {
       const newTotal = savedCart.reduce((acc, item) => {
-        return acc + item.price + item.hostingfee + 15 + 25 + 475;
+        return acc + item.price + item.hostingfee + item.deposit + item.installation + item.monthlysupport;
       }, 0);
       setTotal(newTotal);
     }
   }, []);
-
-
-
   const handleCreateOrder = async (data, actions) => {
     const orderData = {
       intent: 'CAPTURE',

@@ -8,7 +8,7 @@ import { redirect, useRouter } from 'next/navigation';
 import { useState } from 'react';
 const Login = () => {
   const router = useRouter();
-  
+  const [loader,setLoader]=useState(false)
   const [data, setData] = useState({ email: '', password: "" })
   const login = async (e) => {
     e.preventDefault();
@@ -31,7 +31,7 @@ const Login = () => {
             mobileNumber:response.data.user.mobileNumber?response.data.user.mobileNumber:""
           }));
           localStorage.setItem("login", false)
-          router.push("/")
+          router.push("/profile")
         }
       }
     } catch (error) {

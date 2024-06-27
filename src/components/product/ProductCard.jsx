@@ -8,10 +8,8 @@ const ProductCard = ({data}) => {
                 className="shopify-section spaced-section collection-grid-section">
 
                 <div id="ProductGridContainer">
-                 
                  <div  className="collection page-width">
                     <div className="loading-overlay gradient"></div>
-
                     <img src="/images/Elephants_Mesh_Grey.svg"
                         className="bg_collection" />
                     <ul id="product-grid" data-id="template--14480007495725__product-grid"

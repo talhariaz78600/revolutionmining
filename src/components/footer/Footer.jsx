@@ -8,6 +8,8 @@ const Footer = () => {
   const [facebookUrl, setFacebookUrl] = useState('');
   const [instagramUrl, setInstagramUrl] = useState('');
   const [telegramUrl, setTelegramUrl] = useState('');
+  const [mobileno, setMobile] = useState('');
+  const [email, setEmail] = useState('');
   const fetchdata=async()=>{
     try {
         const response = await axios.get(`https://revolutionbackend.vercel.app/api/media/getsinglemedia/6675a719b8c9d030b95645ec`);
@@ -16,7 +18,8 @@ const Footer = () => {
           setTwitterUrl(response.data.data.twitterUrl)
           setFacebookUrl(response.data.data.facebookUrl)
           setInstagramUrl(response.data.data.instagramUrl)
-          
+          setEmail(response.data.data.email)
+          setMobile(response.data.data.mobileno)
           setTelegramUrl(response.data.data.telegramUrl)
         }
       } catch (error) {
@@ -61,8 +64,8 @@ const Footer = () => {
                             <div className="footer-block grid__item">
                                 <div className="footer-block__details-content rte">
                                     <p></p>
-                                    <p className='my-5'><strong>Call or Text us: </strong>213-534-6525</p>
-                                    <p className='my-5'><strong>Email us: </strong>team@revolutionmining.io</p>
+                                    <p className='my-5'><strong>Call or Text us: </strong>{mobileno}</p>
+                                    <p className='my-5'><strong>Email us: </strong>{email}</p>
                                     <p className='my-5'><strong>Hours:</strong><br />Mon–Fri: 8am-6pm PST<br />Sat-Sun: Closed</p>
                                 </div>
                             </div>

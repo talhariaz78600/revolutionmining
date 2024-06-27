@@ -11,6 +11,21 @@ import { useState, useEffect } from 'react';
 
 import Link from 'next/link';
 const CartProducts = () => {
+    const [user, setUser] = useState(null);
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const userProfile = localStorage.getItem('userprofile');
+            const data = JSON.parse(userProfile)
+            console.log(data);
+            if (data && data.sessionExpiration > new Date()) {
+                setUser(data);
+            } else {
+                localStorage.removeItem('userprofile')
+                setUser(null);
+                // localStorage.removeItem("userdata")
+            }
+        }
+    }, []);
     const router=useRouter();
     const data = usePathname()
     const searchParams = useSearchParams();
@@ -23,7 +38,7 @@ const CartProducts = () => {
         console.log(savedCart)
         if (savedCart) {
             const newTotal = savedCart.reduce((acc, item) => {
-                return acc + item.price + item.hostingfee + 15 + 25 + 475;
+                return acc + item.price + item.hostingfee + item.installation + item.deposit + item.monthlysupport;
             }, 0);
 
             setTotal(newTotal);
@@ -160,7 +175,7 @@ const CartProducts = () => {
 
                                                 <div className="cart-item__price-wrapper">
                                                     <span>Total cost</span><span className="price price--end"><span className="Bold-theme-hook-DO-NOT-DELETE bold_cart_total" ></span>
-                                                        ${item.price + item.hostingfee + 25 + 15 + 475}
+                                                        ${item.price + item.hostingfee + item.deposit + item.monthlysupport + item.installation}
                                                     </span></div>
                                             </div>
                                         </div>
@@ -199,19 +214,19 @@ const CartProducts = () => {
 
                                             <div className="js-cartitem">
                                                 <div className="js-itemtitle"> 1 x Monthly Support</div>
-                                                <div className="js-itemprice">$15</div>
+                                                <div className="js-itemprice">${item.monthlysupport}</div>
                                             </div>
 
 
                                             <div className="js-cartitem">
                                                 <div className="js-itemtitle"> 1 x Setup &amp; Installation</div>
-                                                <div className="js-itemprice">$25</div>
+                                                <div className="js-itemprice">${item.installation}</div>
                                             </div>
 
 
                                             <div className="js-cartitem">
                                                 <div className="js-itemtitle"> 1 x Deposit</div>
-                                                <div className="js-itemprice">$475</div>
+                                                <div className="js-itemprice">${item.deposit}</div>
                                             </div>
 
                                         </div>
@@ -229,7 +244,12 @@ const CartProducts = () => {
 
                                         <div className="cart__ctas">
                                             <button type="button" id="btn_place_order" className="cart__checkout-button button--order button" onClick={()=>{
-                                                router.push("/payment")
+                                               if(user){
+
+                                                   router.push("/payment")
+                                               }else{
+                                                router.push("/authentication")
+                                               }
                                             }} name="checkout" form="cart" value="Place Order">Place Order</button>
                                         </div>
                                     </div>
