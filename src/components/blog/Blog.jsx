@@ -10,7 +10,7 @@ const Blog = ({ title, data, pageno }) => {
         <div>
             <main id="MainContent" className="content-for-layout focus-none" role="main" tabIndex="-1">
 
-                <section id="shopify-section-template--14480007594029__main" className="shopify-section spaced-section"><link href="//www.revolutionmining.io/cdn/shop/t/1/assets/component-article-card.css?v=28263552231511277471644328998" rel="stylesheet" type="text/css" media="all" />
+            {data?<section id="shopify-section-template--14480007594029__main" className="shopify-section spaced-section"><link href="//www.revolutionmining.io/cdn/shop/t/1/assets/component-article-card.css?v=28263552231511277471644328998" rel="stylesheet" type="text/css" media="all" />
                     <div className="main-blog page-width">
                         <h1 className="title--primary">The Revolution Blogs</h1>
                         <div   className="blog-articles ">
@@ -46,7 +46,7 @@ const Blog = ({ title, data, pageno }) => {
 
                            {data.search==="no" && <FooterPagination stoped={data.total} pagelength={5} pageno={pageno} pagename={title} />}
                         </div></div>
-                </section>
+                </section>:<div className='text-center'>No blog found</div>}
 
             </main>
         </div>

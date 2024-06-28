@@ -20,8 +20,8 @@ e.preventDefault();
 setLoading(true)
 if (data.firstName !== "" && data.lastName !== "" && data.email !== "" && data.message !== "") {
   emailjs
-    .sendForm("service_e4l9pz1", "template_hjpihos", form.current, {
-      publicKey: "0LiYiAAP4EoRGoJXu",
+    .sendForm("service_iobi7zp", "template_a4z3vmf", form.current, {
+      publicKey: "0p6XOqdGf7HCcGNAj",
     })
     .then(
       (response) => {
@@ -38,6 +38,7 @@ if (data.firstName !== "" && data.lastName !== "" && data.email !== "" && data.m
       },
       (error) => {
         console.error("Email sending failed:", error);
+        setLoading(false);
       }
     )
     .finally(() => {
@@ -67,19 +68,19 @@ if (data.firstName !== "" && data.lastName !== "" && data.email !== "" && data.m
         <input type="hidden" name="form_type" value="contact"/><input type="hidden" name="utf8" value="✓"/><div class="contact__fields">
             <div class="cfield">
               <label class="form__label cfield__label" for="ContactForm-fname">First Name</label>
-              <input class="field__input" autocomplete="firstName" type="text" id="ContactForm-fname" name="firstName" value={data.firstName} onChange={handleChange} placeholder="First Name"/>
+              <input class="field__input" required autocomplete="firstName" type="text" id="ContactForm-fname" name="firstName" value={data.firstName} onChange={handleChange} placeholder="First Name"/>
             </div>
             <div class="cfield">
               <label class="form__label cfield__label" for="ContactForm-lname">Last Name</label>
-              <input class="field__input" autocomplete="lastName" type="text" id="ContactForm-lname" name="lastName" value={data.lastName} onChange={handleChange} placeholder="Last Name"/>
+              <input class="field__input" required autocomplete="lastName" type="text" id="ContactForm-lname" name="lastName" value={data.lastName} onChange={handleChange} placeholder="Last Name"/>
             </div>
             <div class="cfield field--with-error">
               <label class="form__label cfield__label" for="ContactForm-email">Email Address <span aria-hidden="true">*</span></label>
-              <input autocomplete="email" type="email" id="ContactForm-email" class="field__input" name="email" spellcheck="false" autocapitalize="off" value={data.email} onChange={handleChange} aria-required="true" placeholder="Email"/></div>
+              <input autocomplete="email" required type="email" id="ContactForm-email" class="field__input" name="email" spellcheck="false" autocapitalize="off" value={data.email} onChange={handleChange} aria-required="true" placeholder="Email"/></div>
           </div>
           <div class="cfield">
             <label class="form__label cfield__label" for="ContactForm-body">Message</label>
-            <textarea rows="1" id="ContactForm-body" class="text-area field__input" name="message" value={data.message} onChange={handleChange} placeholder="Comment"></textarea>
+            <textarea rows="1" id="ContactForm-body" required class="text-area field__input" name="message" value={data.message} onChange={handleChange} placeholder="Comment"></textarea>
           </div>
           <div class="contact__button right">
             <button type="submit" class="button">

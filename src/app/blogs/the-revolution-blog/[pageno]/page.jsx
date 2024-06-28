@@ -16,13 +16,10 @@ const page = async (context) => {
         cache: "no-store"
       })
       const res = await response.json();
-      if (res.finddata < 1) {
-        redirect(`/not-found`)
-      }
-      else {
+   
 
         return { data: res.finddata, total: res.stop,search:"no"};
-      }
+      
   }
   const data = await blogdata();
 
