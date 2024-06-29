@@ -1,59 +1,78 @@
 "use client"
-import React from 'react';
-import "../../assets/css/component-price.css"
-import "../../assets/css/component-totals.css"
-import "../../assets/css/component-discount.css"
-import "../../assets/css/component-totals.css"
-import "../../assets/css/component-cart.css"
-import { usePathname ,useRouter} from 'next/navigation';
-import { useSearchParams } from 'next/navigation';
-import { useState, useEffect } from 'react';
-
+import React, { useState, useEffect } from 'react';
+import "../../assets/css/component-price.css";
+import "../../assets/css/component-totals.css";
+import "../../assets/css/component-discount.css";
+import "../../assets/css/component-cart.css";
+import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
+
 const CartProducts = () => {
     const [user, setUser] = useState(null);
+
     useEffect(() => {
         if (typeof window !== 'undefined') {
             const userProfile = localStorage.getItem('userprofile');
-            const data = JSON.parse(userProfile)
+            const data = JSON.parse(userProfile);
             console.log(data);
             if (data && data.sessionExpiration > new Date()) {
                 setUser(data);
             } else {
-                localStorage.removeItem('userprofile')
+                localStorage.removeItem('userprofile');
                 setUser(null);
-                // localStorage.removeItem("userdata")
             }
         }
     }, []);
-    const router=useRouter();
-    const data = usePathname()
+
+    const router = useRouter();
+    const data = usePathname();
     const searchParams = useSearchParams();
 
     const [cart, setCart] = useState([]);
     const [total, setTotal] = useState(0);
-    useEffect(() => {
-        const savedCart = JSON.parse(localStorage.getItem('cart'))
 
-        console.log(savedCart)
+    useEffect(() => {
+        const savedCart = JSON.parse(localStorage.getItem('cart'));
+        console.log(savedCart);
         if (savedCart) {
             const newTotal = savedCart.reduce((acc, item) => {
                 return acc + item.price + item.hostingfee + item.installation + item.deposit + item.monthlysupport;
             }, 0);
-
             setTotal(newTotal);
         }
-        setCart(savedCart);
-    }, [searchParams]);
+        setCart(savedCart || []);
+    }, []);
 
+    useEffect(() => {
+        const params = new URLSearchParams(searchParams);
+        const deleteItem = params.get('deleteitem');
+        if (deleteItem) {
+            const savedCart = JSON.parse(localStorage.getItem('cart'));
+            if (savedCart) {
+                const newTotal = savedCart.reduce((acc, item) => {
+                    return acc + item.price + item.hostingfee + item.installation + item.deposit + item.monthlysupport;
+                }, 0);
+                setTotal(newTotal);
+            }
+            setCart(savedCart || []);
+        }
+    }, []);
 
     const removeFromCart = (product) => {
         const updatedCart = cart.filter(item => item._id !== product._id);
-        setCart(updatedCart);
         localStorage.setItem('cart', JSON.stringify(updatedCart));
-        router.push(`/cart?itemremove=${updatedCart.length}`);
+        setCart(updatedCart);
+
+        const newTotal = updatedCart.reduce((acc, item) => {
+            return acc + item.price + item.hostingfee + item.installation + item.deposit + item.monthlysupport;
+        }, 0);
+        setTotal(newTotal);
+
+        const params = new URLSearchParams(searchParams);
+        params.set('deleteitem', updatedCart.length);
+        router.replace(`/cart?${params.toString()}`);
     };
- 
+
 
     return (
         <div>
