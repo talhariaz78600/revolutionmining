@@ -2,6 +2,7 @@
 import React, { useRef, useState } from 'react'
 import emailjs from "@emailjs/browser";
 import "../../assets/css/section-contact-us-form.css"
+import axios from 'axios';
 const Contact = () => {
   const form = useRef(null)
   const [data, setData] = useState({
@@ -15,12 +16,27 @@ const Contact = () => {
     const { name, value } = e.target;
     setData((prevData) => ({ ...prevData, [name]: value }));
   }
-  const sendMail = (e) => {
+  const contact = async()=>{
+    try {
+      const response= await axios.post('https://revolutionbackend.vercel.app/api/contact/createContact',{
+        Name:data.firstName,
+        lastname:data.lastName,
+        email:data.email,
+        message:data.message
+      })
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+
+  }
+
+  const sendMail = async(e) => {
     e.preventDefault();
     setLoading(true)
     if (data.firstName !== "" && data.lastName !== "" && data.email !== "" && data.message !== "") {
-      emailjs
-        .sendForm("service_iobi7zp", "template_a4z3vmf", form.current, {
+     await contact()
+      emailjs.sendForm("service_iobi7zp", "template_a4z3vmf", form.current, {
           publicKey: "0p6XOqdGf7HCcGNAj",
         })
         .then(

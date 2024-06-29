@@ -19,10 +19,10 @@ const Page = () => {
     const savedCart = JSON.parse(localStorage.getItem('cart'))
     setCart(savedCart);
 
-  
+
     if (savedCart) {
       const newTotal = savedCart.reduce((acc, item) => {
-        return acc + item.price + item.hostingfee + item.deposit + item.installation + item.monthlysupport;
+        return acc + (item.price + item.hostingfee + item.deposit + item.monthlysupport + item.installation) * item.totalitem;
       }, 0);
       setTotal(newTotal);
     }
@@ -52,15 +52,17 @@ const Page = () => {
     const data = paymentDetails;
 
     try {
-    let wash = cart.map((item) => {
-      return { productId: item._id, orderId: data.id, orderStatus: data.status, productprice: item.price,title:item.title, hostingfee:item.hostingfee,power:item.power,machines:item.machines}
-    })
+      let wash = cart.map((item) => {
+        return { productId: item._id, orderId: data.id, orderStatus: data.status, productprice: item.price, title: item.title, hostingfee: item.hostingfee, power: item.power, machines: item.totalitem }
+      })
       const response = await axios.post('https://revolutionbackend.vercel.app/api/order/productorder', {
         userId: user.id,
-        product: wash?wash:"",
+        product: wash ? wash : "",
         price: total,
-        noofitems: wash?wash.length:"",
-        status:data.status==="completed"?true:false
+        noofitems: wash ? wash.reduce((accumulator, currentObject) => {
+          return accumulator + currentObject.totalitem;
+      }, 0) : "",
+        status: data.status === "completed" ? true : false
       });
       if (response.status === 200) {
         console.log('Payment details saved successfully:', data);
@@ -98,7 +100,9 @@ const Page = () => {
       </div>
 
       <div className='col-span-1 mx-10'>
-        <Pay cart={cart.length} total={total} />
+        <Pay cart={cart.reduce((accumulator, currentObject) => {
+          return accumulator + currentObject.totalitem;
+        }, 0)} total={total} />
       </div>
     </div>
 

@@ -65,7 +65,7 @@ const ProductCard = ({data}) => {
                                             {item.power &&<p>• {item.power}</p>}
                                             <p>• Hosting Fee: ${item.hostingfee}/month</p>
                                             <p>• Revolution Texas Facility </p>
-                                            <p>• Online Date: June 2024</p>
+                                            <p>• Online Date: {item.date}</p>
                                         </div>
 
 

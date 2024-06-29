@@ -10,9 +10,11 @@ const Footer = () => {
   const [telegramUrl, setTelegramUrl] = useState('');
   const [mobileno, setMobile] = useState('');
   const [email, setEmail] = useState('');
+  const [open, setOpen] = useState('');
+  const [close, setClose] = useState('');
   const fetchdata=async()=>{
     try {
-        const response = await axios.get(`https://revolutionbackend.vercel.app/api/media/getsinglemedia/6675a719b8c9d030b95645ec`);
+        const response = await axios.get(`https://revolutionbackend.vercel.app/api/media/getsinglemedia/6675a719b8c9d030b95645ec`)
         if (response && response.status === 200) {
           console.log("success" , response)
           setTwitterUrl(response.data.data.twitterUrl)
@@ -20,6 +22,8 @@ const Footer = () => {
           setInstagramUrl(response.data.data.instagramUrl)
           setEmail(response.data.data.email)
           setMobile(response.data.data.mobileno)
+          setOpen(response.data.data.open)
+          setClose(response.data.data.close)
           setTelegramUrl(response.data.data.telegramUrl)
         }
       } catch (error) {
@@ -66,7 +70,7 @@ const Footer = () => {
                                     <p></p>
                                     <p className='my-5'><strong>Call or Text us: </strong>{mobileno}</p>
                                     <p className='my-5'><strong>Email us: </strong>{email}</p>
-                                    <p className='my-5'><strong>Hours:</strong><br />Mon–Fri: 8am-6pm PST<br />Sat-Sun: Closed</p>
+                                    <p className='my-5'><strong>Hours:</strong><br />{open}<br />{close}</p>
                                 </div>
                             </div>
                             <div className="footer-block grid__item">

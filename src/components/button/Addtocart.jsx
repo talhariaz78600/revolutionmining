@@ -20,25 +20,16 @@ const Addtocart = ({ item }) => {
   const addToCart = () => {
     const savedCart = JSON.parse(localStorage.getItem('cart')) || [];
     let datapro = savedCart.find((product) => product._id === item._id);
-
-    if (datapro) {
-      toast.success(
-        <div>
-          <p>This product is already in your cart!</p>
-          <button
-            className="product-form__submit mt-4 button button--full-width button--secondary"
-            onClick={() => {
-              router.push('/cart');
-            }}
-          >
-            Go to Cart
-          </button>
-        </div>
-      );
-    } else {
-      const newCart = [...savedCart, item];
-      localStorage.setItem('cart', JSON.stringify(newCart));
-      setCart(newCart);
+    if (datapro && datapro.totalitem<Number(datapro.machines)) {
+      let index=savedCart.findIndex((product) => product._id === item._id);
+      datapro.totalitem=datapro.totalitem+1;
+      console.log(datapro);
+      savedCart[index]=datapro;
+      localStorage.setItem('cart', JSON.stringify(savedCart));
+      const total=savedCart.reduce((accumulator, currentObject) => {
+        return accumulator + currentObject.totalitem;
+    }, 0);
+    
       toast.success(
         <div>
           <p>Product added successfully to your cart!</p>
@@ -52,7 +43,44 @@ const Addtocart = ({ item }) => {
           </button>
         </div>
       );
-      router.push(`${data}?itemadd=${newCart.length}`);
+      router.push(`${data}?itemadd=${total}`);
+    } else if(datapro && datapro.totalitem===Number(datapro.machines)){
+      toast.error(
+        <div>
+          <p>Total  product were {item.machines} that already added in your cart</p>
+          <button
+            className="product-form__submit mt-4 button button--full-width button--secondary"
+            onClick={() => {
+              router.push('/cart');
+            }}
+          >
+            Go to Cart
+          </button>
+        </div>
+      );
+    }
+    else {
+      item.totalitem=1;
+      const newCart = [...savedCart, item];
+      localStorage.setItem('cart', JSON.stringify(newCart));
+      setCart(newCart);
+      const total=newCart.reduce((accumulator, currentObject) => {
+        return accumulator + currentObject.totalitem;
+    }, 0);
+      toast.success(
+        <div>
+          <p>Product added successfully to your cart!</p>
+          <button
+            className="product-form__submit mt-4 button button--full-width button--secondary"
+            onClick={() => {
+              router.push('/cart');
+            }}
+          >
+            Go to Cart
+          </button>
+        </div>
+      );
+      router.push(`${data}?itemadd=${total}`);
     }
   };
 

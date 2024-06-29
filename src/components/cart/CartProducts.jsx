@@ -5,7 +5,7 @@ import "../../assets/css/component-totals.css"
 import "../../assets/css/component-discount.css"
 import "../../assets/css/component-totals.css"
 import "../../assets/css/component-cart.css"
-import { usePathname ,useRouter} from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useSearchParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
@@ -26,7 +26,7 @@ const CartProducts = () => {
             }
         }
     }, []);
-    const router=useRouter();
+    const router = useRouter();
     const data = usePathname()
     const searchParams = useSearchParams();
 
@@ -38,7 +38,7 @@ const CartProducts = () => {
         console.log(savedCart)
         if (savedCart) {
             const newTotal = savedCart.reduce((acc, item) => {
-                return acc + item.price + item.hostingfee + item.installation + item.deposit + item.monthlysupport;
+                return acc + (item.price + item.hostingfee + item.deposit + item.monthlysupport + item.installation) * item.totalitem;
             }, 0);
 
             setTotal(newTotal);
@@ -51,16 +51,49 @@ const CartProducts = () => {
         const updatedCart = cart.filter(item => item._id !== product._id);
         setCart(updatedCart);
         setTimeout(() => {
-            router.push(`/cart?itemremove=${updatedCart.length}`);
-        },1000);
+            router.push(`/cart?productremove=${updatedCart.length}`);
+        }, 1000);
         localStorage.setItem('cart', JSON.stringify(updatedCart));
     };
- 
+
+
+    const changeitem=(item)=>{
+        const savedCart = JSON.parse(localStorage.getItem('cart')) || [];
+        let datapro = savedCart.find((product) => product._id === item._id);
+        if (datapro && datapro.totalitem<Number(datapro.machines)) {
+          let index=savedCart.findIndex((product) => product._id === item._id);
+          datapro.totalitem=datapro.totalitem+1;
+          console.log(datapro);
+          savedCart[index]=datapro;
+          localStorage.setItem('cart', JSON.stringify(savedCart));
+          const total=savedCart.reduce((accumulator, currentObject) => {
+            return accumulator + currentObject.totalitem;
+        }, 0);
+          router.push(`${data}?itemadd=${total}`);
+        } 
+    }
+
+    const changeitem1=(item)=>{
+        const savedCart = JSON.parse(localStorage.getItem('cart')) || [];
+        let datapro = savedCart.find((product) => product._id === item._id);
+        if (datapro  && datapro.totalitem>1) {
+          let index=savedCart.findIndex((product) => product._id === item._id);
+          datapro.totalitem=datapro.totalitem-1;
+          console.log(datapro);
+          savedCart[index]=datapro;
+          localStorage.setItem('cart', JSON.stringify(savedCart));
+          const total=savedCart.reduce((accumulator, currentObject) => {
+            return accumulator + currentObject.totalitem;
+        }, 0);
+          router.push(`${data}?itemremove=${total}`);
+        } 
+    }
+
 
     return (
         <div>
 
-            {cart && cart.length>0? <div className="page-width"><div className="grid">
+            {cart && cart.length > 0 ? <div className="page-width"><div className="grid">
                 <div id="shopify-section-template--14480007331885__1645454626d58461e3" className="shopify-section side-cart-items">
                     <cart-items className="side-cart">
                         <div className="title-wrapper-with-link hidden">
@@ -101,7 +134,7 @@ const CartProducts = () => {
                                                             <dd>✓
                                                             </dd>
                                                         </div><div className="product-option">
-                                                            <dt>July 2024 online date: </dt>
+                                                            <dt>{item.date} online date: </dt>
                                                             <dd>✓
                                                             </dd>
                                                         </div><div className="product-option">
@@ -126,28 +159,25 @@ const CartProducts = () => {
                                                     <p className="product-option"></p><ul className="discounts list-unstyled" role="list" aria-label="Discount"></ul>
                                                 </div>
 
-                                                <div className="cart-item__quantity "><div className="cart-item__quantity-wrapper">
+                                                <div className="cart-item__quantity ">
+                                                    <div className="">
                                                     {/* <label className="visually-hidden" for="Quantity-1">
                                                Quantity
                                            </label> */}
-                                                    {/* <quantity-input className="flex">
-                                               <button className="quantity__button w-2 no-js-hidden" name="minus" type="button">
-                                                   <span className="visually-hidden">Decrease quantity for Antminer KA3 166 TH</span>
-                                                   <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" className="icon icon-minus" fill="none" viewBox="0 0 10 2">
-                                                       <path fill-rule="evenodd" clip-rule="evenodd" d="M.5 1C.5.7.7.5 1 .5h8a.5.5 0 110 1H1A.5.5 0 01.5 1z" fill="currentColor">
-                                                       </path></svg>
+                                                    <div className="flex mb-10">
+                                                        <button onClick={()=>{changeitem(item)}} className="text-white border border-white  px-4 py-0" name="minus" type="button">
+                                                            <span className="visually-hidden">Decrease quantity for Antminer KA3 166 TH</span>
+                                                          
+                                                                    +
+                                                        </button>
+                                                        <p className=' p-4'>{item.totalitem}</p>
+                                                        <button onClick={()=>{changeitem1(item)}} className="text-white border border-white  px-4 py-0" name="plus" type="button">
+                                                            <span className="visually-hidden">Increase quantity for Antminer KA3 166 TH</span>
+                                                       
+                                                            -
+                                                        </button>
 
-                                               </button>
-                                               <p className=''>1</p>
-                                               <button className="quantity__button w-2 no-js-hidden" name="plus" type="button">
-                                                   <span className="visually-hidden">Increase quantity for Antminer KA3 166 TH</span>
-                                                   <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="presentation" className="icon icon-plus" fill="none" viewBox="0 0 10 10">
-                                                       <path fill-rule="evenodd" clip-rule="evenodd" d="M1 4.51a.5.5 0 000 1h3.5l.01 3.5a.5.5 0 001-.01V5.5l3.5-.01a.5.5 0 00-.01-1H5.5L5.49.99a.5.5 0 00-1 .01v3.5l-3.5.01H1z" fill="currentColor">
-                                                       </path></svg>
-
-                                               </button>
-
-                                           </quantity-input> */}
+                                                    </div>
 
                                                     <cart-remove-button >
                                                         <button className="button button--tertiary" onClick={() => { removeFromCart(item) }}>
@@ -158,7 +188,7 @@ const CartProducts = () => {
 
                                                         </button>
                                                     </cart-remove-button>
-                                                </div>
+                                                     </div>
                                                     <div className="cart-item__error" id="Line-item-error-1" role="alert">
                                                         <small className="cart-item__error-text"></small>
                                                     </div>
@@ -179,7 +209,7 @@ const CartProducts = () => {
 
                                                 <div className="cart-item__price-wrapper">
                                                     <span>Total cost</span><span className="price price--end"><span className="Bold-theme-hook-DO-NOT-DELETE bold_cart_total" ></span>
-                                                        ${item.price + item.hostingfee + item.deposit + item.monthlysupport + item.installation}
+                                                        ${(item.price + item.hostingfee + item.deposit + item.monthlysupport + item.installation) * item.totalitem}
                                                     </span></div>
                                             </div>
                                         </div>
@@ -205,32 +235,32 @@ const CartProducts = () => {
                                     {cart.map((item, index) => {
                                         return <div className="js-contents" key={index}>
                                             <div className="js-cartitem">
-                                                <div className="js-itemtitle"><span className="main-price"> 1 </span> x {item.title}</div>
-                                                <div className="js-itemprice">${item.price}</div>
+                                                <div className="js-itemtitle"><span className="main-price"> {item.totalitem} </span> x {item.title}</div>
+                                                <div className="js-itemprice">${item.price * item.totalitem}</div>
                                             </div>
 
 
                                             <div className="js-cartitem">
-                                                <div className="js-itemtitle"> 1 x Monthly Hosting</div>
-                                                <div className="js-itemprice">${item.hostingfee}</div>
+                                                <div className="js-itemtitle">  {item.totalitem} x Monthly Hosting</div>
+                                                <div className="js-itemprice">${item.hostingfee * item.totalitem}</div>
                                             </div>
 
 
                                             <div className="js-cartitem">
-                                                <div className="js-itemtitle"> 1 x Monthly Support</div>
-                                                <div className="js-itemprice">${item.monthlysupport}</div>
+                                                <div className="js-itemtitle"> {item.totalitem} x Monthly Support</div>
+                                                <div className="js-itemprice">${item.monthlysupport * item.totalitem}</div>
                                             </div>
 
 
                                             <div className="js-cartitem">
-                                                <div className="js-itemtitle"> 1 x Setup &amp; Installation</div>
-                                                <div className="js-itemprice">${item.installation}</div>
+                                                <div className="js-itemtitle"> {item.totalitem} x Setup &amp; Installation</div>
+                                                <div className="js-itemprice">${item.installation * item.totalitem}</div>
                                             </div>
 
 
                                             <div className="js-cartitem">
-                                                <div className="js-itemtitle"> 1 x Deposit</div>
-                                                <div className="js-itemprice">${item.deposit}</div>
+                                                <div className="js-itemtitle">  {item.totalitem} x Deposit</div>
+                                                <div className="js-itemprice">$ {item.deposit * item.totalitem}</div>
                                             </div>
 
                                         </div>
@@ -247,13 +277,13 @@ const CartProducts = () => {
                                     <div className="buttons-wrapper">
 
                                         <div className="cart__ctas">
-                                            <button type="button" id="btn_place_order" className="cart__checkout-button button--order button" onClick={()=>{
-                                               if(user){
+                                            <button type="button" id="btn_place_order" className="cart__checkout-button button--order button" onClick={() => {
+                                                if (user) {
 
-                                                   router.push("/payment")
-                                               }else{
-                                                router.push("/authentication")
-                                               }
+                                                    router.push("/payment")
+                                                } else {
+                                                    router.push("/authentication")
+                                                }
                                             }} name="checkout" form="cart" value="Place Order">Place Order</button>
                                         </div>
                                     </div>
