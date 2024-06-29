@@ -1,57 +1,65 @@
 "use client"
-import React, { useState, useEffect } from 'react';
-import "../../assets/css/component-price.css";
-import "../../assets/css/component-totals.css";
-import "../../assets/css/component-discount.css";
-import "../../assets/css/component-cart.css";
-import { useRouter, useSearchParams } from 'next/navigation';
-import Link from 'next/link';
+import React from 'react';
+import "../../assets/css/component-price.css"
+import "../../assets/css/component-totals.css"
+import "../../assets/css/component-discount.css"
+import "../../assets/css/component-totals.css"
+import "../../assets/css/component-cart.css"
+import { usePathname ,useRouter} from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
+import { useState, useEffect } from 'react';
 
+import Link from 'next/link';
 const CartProducts = () => {
     const [user, setUser] = useState(null);
-    const router = useRouter();
-    const searchParams = useSearchParams();
-    const [cart, setCart] = useState([]);
-    const [total, setTotal] = useState(0);
-
     useEffect(() => {
         if (typeof window !== 'undefined') {
             const userProfile = localStorage.getItem('userprofile');
-            const data = JSON.parse(userProfile);
-            if (data && new Date(data.sessionExpiration) > new Date()) {
+            const data = JSON.parse(userProfile)
+            console.log(data);
+            if (data && data.sessionExpiration > new Date()) {
                 setUser(data);
             } else {
-                localStorage.removeItem('userprofile');
+                localStorage.removeItem('userprofile')
                 setUser(null);
+                // localStorage.removeItem("userdata")
             }
         }
     }, []);
+    const router=useRouter();
+    const data = usePathname()
+    const searchParams = useSearchParams();
 
+    const [cart, setCart] = useState([]);
+    const [total, setTotal] = useState(0);
     useEffect(() => {
-        const savedCart = JSON.parse(localStorage.getItem('cart'));
+        const savedCart = JSON.parse(localStorage.getItem('cart'))
+
+        console.log(savedCart)
         if (savedCart) {
-            setCart(savedCart);
-            const newTotal = savedCart.reduce((acc, item) => acc + item.price + item.hostingfee + item.installation + item.deposit + item.monthlysupport, 0);
+            const newTotal = savedCart.reduce((acc, item) => {
+                return acc + item.price + item.hostingfee + item.installation + item.deposit + item.monthlysupport;
+            }, 0);
+
             setTotal(newTotal);
         }
-    }, []);
+        setCart(savedCart);
+    }, [searchParams]);
+
 
     const removeFromCart = (product) => {
         const updatedCart = cart.filter(item => item._id !== product._id);
-        localStorage.setItem('cart', JSON.stringify(updatedCart));
         setCart(updatedCart);
-
-        const newTotal = updatedCart.reduce((acc, item) => acc + item.price + item.hostingfee + item.installation + item.deposit + item.monthlysupport, 0);
-        setTotal(newTotal);
-
-        const params = new URLSearchParams(searchParams.toString());
-        params.set('deleteitem', String(cart.length - 1));
-        router.replace(`?${params.toString()}`, undefined, { shallow: true });
+        setTimeout(() => {
+            router.push(`/cart?itemremove=${updatedCart.length}`);
+        },1000);
+        localStorage.setItem('cart', JSON.stringify(updatedCart));
     };
-
+ 
 
     return (
         <div>
+
             {cart && cart.length>0? <div className="page-width"><div className="grid">
                 <div id="shopify-section-template--14480007331885__1645454626d58461e3" className="shopify-section side-cart-items">
                     <cart-items className="side-cart">
@@ -63,7 +71,7 @@ const CartProducts = () => {
                                 <div className="js-contents"><div className="cart-items">
                                     <h3 className="title">Equipment Purchase</h3>
                                     {cart.map((item, index) => {
-                                        return <div key={index} className="cart-item mydiv" id="CartItem-1">
+                                        return <div key={item._id} className="cart-item mydiv" id="CartItem-1">
                                             <div className="cart-item-wrapper">
                                                 <div className="cart-item__media">
 
@@ -141,7 +149,7 @@ const CartProducts = () => {
 
                                            </quantity-input> */}
 
-                                                    <cart-remove-button id="Remove-1" data-index="1">
+                                                    <cart-remove-button >
                                                         <button className="button button--tertiary" onClick={() => { removeFromCart(item) }}>
                                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true" focusable="false" role="presentation" className="icon icon-remove">
                                                                 <path d="M14 3h-3.53a3.07 3.07 0 00-.6-1.65C9.44.82 8.8.5 8 .5s-1.44.32-1.87.85A3.06 3.06 0 005.53 3H2a.5.5 0 000 1h1.25v10c0 .28.22.5.5.5h8.5a.5.5 0 00.5-.5V4H14a.5.5 0 000-1zM6.91 1.98c.23-.29.58-.48 1.09-.48s.85.19 1.09.48c.2.24.3.6.36 1.02h-2.9c.05-.42.17-.78.36-1.02zm4.84 11.52h-7.5V4h7.5v9.5z" fill="currentColor"></path>
