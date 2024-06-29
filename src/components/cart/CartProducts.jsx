@@ -51,16 +51,12 @@ const CartProducts = () => {
         const updatedCart = cart.filter(item => item._id !== product._id);
         setCart(updatedCart);
         localStorage.setItem('cart', JSON.stringify(updatedCart));
-        router.push(`${data}?itemremove=${updatedCart.length}`);
+        router.push(`/cart?itemremove=${updatedCart.length}`);
     };
-    console.log(cart)
-    function isEmptyArray(variable) {
-        return Array.isArray(variable) && variable.length === 0;
-      }
+ 
 
     return (
         <div>
-
             {cart && cart.length>0? <div className="page-width"><div className="grid">
                 <div id="shopify-section-template--14480007331885__1645454626d58461e3" className="shopify-section side-cart-items">
                     <cart-items className="side-cart">
